@@ -22,3 +22,5 @@
 @import "inscripciones";
 @import "centro-estudiantes";
 @import "intertribus";
+// Siempre al final: sólo contiene @media (max-width) para celu/tablet.
+@import "responsive";

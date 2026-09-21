@@ -1,0 +1,564 @@
+// ===================================================
+// Responsive — celulares y tablets
+//
+// IMPORTANTE: todo lo de este archivo vive adentro de
+// @media (max-width: …). En pantallas de compu no se aplica
+// nada de esto, así que el diseño desktop no cambia.
+//
+// Se importa al final de main.scss para que, con la misma
+// especificidad, estas reglas le ganen a las de cada página.
+//
+// Cortes:
+//   1099px  → tablet / menú hamburguesa (el mismo corte del header)
+//    899px  → tablet vertical: los encabezados de nivel se apilan
+//    799px  → celu grande / tablet chica
+//    559px  → celu
+//    380px  → celu chico
+// ===================================================
+
+@mixin below($width) {
+  @media (max-width: $width) { @content; }
+}
+
+// ===================================================
+// HEADER + MENÚ HAMBURGUESA  (≤ 1099px)
+// El header es blanco: las 3 rayitas eran blancas (invisibles) y
+// los links del menú desplegable eran negros sobre fondo oscuro.
+// ===================================================
+@include below(1099px) {
+  .nav__toggle span { background: $color-charcoal; }
+
+  .nav__menu {
+    max-height: calc(100vh - 84px);
+    overflow-y: auto;
+  }
+
+  .nav__link {
+    color: $color-white;
+    justify-content: space-between;
+
+    &:hover { background: rgba(255, 255, 255, 0.08); }
+
+    &.is-active {
+      color: $color-orange;
+      background: rgba(255, 255, 255, 0.06);
+    }
+  }
+}
+
+@include below(559px) {
+  .container { padding: 0 $space-3; }
+
+  .nav { padding: 0.5rem $space-3; }
+  .nav__brand { gap: 0.5rem; }
+  .nav__brand img { width: 52px; }
+  .nav__brand span { font-size: 0.95rem; }
+}
+
+// ===================================================
+// GLOBAL  (≤ 799px)
+// ===================================================
+@include below(799px) {
+  section { padding: $space-5 0; }
+
+  .page-hero { padding: $space-4 0; }
+
+  .eyebrow {
+    letter-spacing: 0.08em;
+    text-align: center;
+    &::before, &::after { width: 22px; }
+  }
+}
+
+@include below(559px) {
+  .btn { padding: 0.65rem 1.3rem; font-size: 0.9rem; }
+}
+
+// Sin mouse no existe "hover": que las tarjetas no queden agrandadas
+// después de tocarlas.
+@media (hover: none) {
+  .accordion-item:hover,
+  .inst-card:hover,
+  .insc-level:hover { transform: none; }
+}
+
+// ===================================================
+// FOOTER  (≤ 559px)
+// ===================================================
+@include below(559px) {
+  .footer-cta__inner {
+    flex-direction: column;
+    text-align: center;
+    gap: $space-2;
+  }
+
+  .footer__logos {
+    gap: $space-2;
+    margin: $space-4 0 $space-3;
+    img { width: 100px; }
+  }
+
+  .footer__info { font-size: 0.86rem; }
+
+  .back-to-top {
+    right: $space-3;
+    bottom: $space-3;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+// ===================================================
+// INICIO
+// ===================================================
+@include below(799px) {
+  // Las imágenes de las tarjetas "flotan" 85px hacia arriba: en 2 filas
+  // se pisaban con la fila de arriba, así que hace falta más aire entre filas.
+  .inst-grid { row-gap: 7rem; }
+
+  // Los círculos de Misión/Valores/Visión flotan arriba de cada tarjeta.
+  .value-grid {
+    margin-top: 6.5rem;
+    row-gap: 9rem;
+  }
+
+  .novedades {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  .novedades__text { flex-basis: 60%; min-width: 200px; }
+  .novedades__text h3 { font-size: 1.6rem; }
+
+  .hero-carousel__caption {
+    font-size: 1.05rem;
+    left: $space-3;
+    right: 4.5rem;
+  }
+}
+
+@include below(559px) {
+  .inst-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .hero-carousel { aspect-ratio: 4/3; }
+
+  .hero__band--title { padding: $space-4 0 $space-3; }
+  .hero__band--datos { padding: $space-3 0 $space-4; }
+  .hero__band--novedades { padding: $space-3 0 $space-4; }
+
+  .stat-bar { padding: $space-3 $space-2; gap: $space-2; }
+  .stat__number { font-size: 1.3rem; }
+
+  .novedades { padding: $space-3; }
+  .novedades__icon { width: 40px; height: 40px; font-size: 24px; }
+  .novedades__text { flex-basis: 100%; }
+  .novedades__text h3 { font-size: 1.3rem; }
+  .novedades__arrow { width: 100%; justify-content: center; }
+
+  .novedades-title::before,
+  .novedades-title::after { max-width: 40px; }
+
+  .value-card { padding: $space-3; }
+}
+
+// ===================================================
+// PROPUESTA EDUCATIVA — encabezado de cada nivel
+// (Inicial, Primario, Secundario, Modalidad Especial)
+// Se apila en vertical y se anulan los márgenes negativos que
+// acomodan el logo y el título en la versión de compu.
+// ===================================================
+@include below(899px) {
+  @each $p in ni, np, ns, me {
+    .#{$p}-header {
+      flex-direction: column;
+      gap: $space-3;
+      text-align: center;
+
+      br { display: none; }
+    }
+
+    .#{$p}-header__logo img {
+      width: 100%;
+      max-width: 240px;
+      margin: 0 auto;
+    }
+
+    .#{$p}-header__titulo {
+      margin: 0 0 $space-2;
+      font-size: 34px;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .#{$p}-header__title {
+      margin: 0 0 $space-2;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .#{$p}-header__badge {
+      width: 96px;
+      height: 96px;
+      img { width: 64px; }
+    }
+
+    .#{$p}-header__subtitulo { font-size: 34px; }
+
+    .#{$p}-schedule { margin-left: 0; }
+  }
+}
+
+@include below(559px) {
+  @each $p in ni, np, ns, me {
+    .#{$p}-zone { padding: $space-3; }
+
+    .#{$p}-zone--peach {
+      padding-left: $space-3;
+      padding-right: $space-3;
+    }
+
+    .#{$p}-header__titulo { font-size: 26px; }
+    .#{$p}-header__subtitulo { font-size: 26px; padding: 4px 8px; }
+
+    .#{$p}-header__badge {
+      width: 76px;
+      height: 76px;
+      img { width: 50px; }
+    }
+
+    .#{$p}-info-card h3 { font-size: 26px; }
+  }
+
+  .ni-pill,
+  .np-pill { font-size: 17px; }
+
+  .np-values-row--pair { grid-template-columns: 1fr; }
+
+  .ni-schedule { gap: $space-3; }
+}
+
+@include below(899px) {
+  .np-values-row--pair { grid-template-columns: 1fr; }
+}
+
+// Trámites (círculo + cartel con el nombre). El cartel tenía ancho fijo
+// (329px / 410px) y en tablet/celu se salía de la columna.
+@include below(1099px) {
+  @each $p in ni, np, ns, me {
+    .#{$p}-tramite__label {
+      width: 100%;
+      max-width: 329px;
+      font-size: 18px;
+
+      a { word-break: break-all; }
+    }
+  }
+
+  .me-tramite__label { max-width: 410px; }
+}
+
+@include below(559px) {
+  @each $p in ni, np, ns, me {
+    .#{$p}-tramite__icon {
+      width: 160px;
+      height: 156px;
+      img { width: 100px; }
+    }
+
+    .#{$p}-tramite__label { font-size: 16px; }
+  }
+}
+
+// ===================================================
+// EQUIPO DIRECTIVO
+// ===================================================
+@include below(799px) {
+  // Los márgenes negativos en px estaban calculados para la imagen al 58%
+  // en compu; en celu se usa el ancho completo y se escalan con la pantalla.
+  .fraseEquipoDirectivo {
+    width: 100%;
+    margin-top: -14vw;
+    margin-bottom: 15vw;
+  }
+
+  .ed-team-title {
+    &::before, &::after { max-width: 40px; }
+    span { font-size: 30px; padding: 0.3rem 0.6rem; text-align: center; }
+  }
+
+  .ed-filter-btn { font-size: 1.05rem; padding: 0.5rem 1rem; }
+  .ed-quote { padding: 0 $space-2; }
+}
+
+@include below(559px) {
+  .ed-zone { padding: $space-3; }
+  .ed-zone--peach { padding-left: $space-3; padding-right: $space-3; }
+
+  // Ícono arriba, texto abajo (en compu quedan uno al lado del otro).
+  .ed-value,
+  .ed-value--left {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .ed-value__icon { width: 84px; height: 84px; }
+
+  .ed-team-title span { font-size: 24px; }
+  .team-member h4 { font-size: 20px; }
+}
+
+// ===================================================
+// HISTORIA
+// ===================================================
+@include below(559px) {
+  .hist-zone { padding: $space-3; }
+  .hist-zone--peach { padding-left: $space-3; padding-right: $space-3; }
+  .hist-founder { padding: $space-4 $space-3; }
+  .hist-founder__name { font-size: 1.15rem; }
+
+  .hist-modal { padding: $space-2; }
+  .hist-modal__panel { padding: $space-4 $space-3; }
+}
+
+// ===================================================
+// NOMBRE
+// ===================================================
+@include below(1099px) {
+  // Ya está en una sola columna: la foto no tiene por qué ocupar todo el ancho.
+  .nombre-portrait {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+@include below(799px) {
+  .nombre-why-text { font-size: 19px; }
+}
+
+@include below(559px) {
+  .nombre-zone { padding: $space-3; }
+  .nombre-zone--peach { padding-left: $space-3; padding-right: $space-3; }
+
+  .nombre-hero-title::before,
+  .nombre-hero-title::after,
+  .nombre-why-title::before,
+  .nombre-why-title::after { max-width: 40px; }
+
+  .accordion-trigger { padding: $space-2; font-size: 0.95rem; }
+  .accordion-panel__inner { padding: 0 $space-2 $space-2 3.2rem; }
+}
+
+// ===================================================
+// HIMNO
+// ===================================================
+@include below(799px) {
+  .himno-lyrics { font-size: 19px; line-height: 1.75; }
+
+  .himno-authors-head {
+    flex-wrap: wrap;
+    h3 { font-size: 26px; }
+  }
+}
+
+@include below(559px) {
+  .himno-hero-title::before,
+  .himno-hero-title::after { max-width: 40px; }
+
+  .himno-lyrics { font-size: 17px; padding: $space-3; max-height: 440px; }
+
+  .himno-authors-head__icon { width: 68px; height: 64px; }
+  .himno-authors-head h3 { font-size: 22px; }
+
+  .himno-authors { flex-wrap: wrap; gap: $space-3; }
+}
+
+// ===================================================
+// PAGOS
+// ===================================================
+@include below(799px) {
+  // En compu sube -39px para compensar el padding de la sección;
+  // en celu la sección tiene menos padding.
+  .pagos-header { margin-top: -16px; }
+}
+
+@include below(559px) {
+  .pagos-header { padding: $space-3 $space-3 $space-4; }
+  .pagos-header-title {
+    font-size: 1.3rem;
+    &::before, &::after { max-width: 40px; }
+  }
+  .pagos-header-logo {
+    img { width: 80px; }
+    span { font-size: 28px; }
+  }
+
+  .pagos-box { padding: $space-3; }
+  .pagos-feature__icon { width: 72px; height: 70px; }
+
+  .pagos-zone { padding: $space-3; }
+  .pagos-zone--peach { padding-left: $space-3; padding-right: $space-3; }
+
+  .pagos-link-box h3 { font-size: 1.15rem; }
+
+  .pagos-select-btn {
+    padding: 1rem 1.4rem;
+    font-size: 1.05rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pagos-note {
+    border-radius: $radius-md;
+    max-width: 100%;
+  }
+}
+
+// ===================================================
+// BECAS
+// ===================================================
+@include below(799px) {
+  .alert-box {
+    svg { width: 56px; height: 70px; }
+    p { font-size: 22px; }
+  }
+
+  .becas-comision-title { font-size: 30px; }
+}
+
+@include below(559px) {
+  .alert-box {
+    gap: $space-2;
+    align-items: center;
+    svg { width: 40px; height: 50px; }
+    p { font-size: 17px; }
+  }
+
+  .subtitulo-becas {
+    font-size: 16px;
+    letter-spacing: 0.08em;
+  }
+
+  .becas-step__marker {
+    width: 40px;
+    height: 40px;
+    font-size: 21px;
+  }
+  .becas-step__body {
+    h4 { font-size: 19px; }
+    p, ul { font-size: 16px; }
+  }
+
+  .becas-zone { padding: $space-3; }
+  .becas-zone--peach { padding-left: $space-3; padding-right: $space-3; }
+
+  .becas-comision-title { font-size: 24px; }
+  .becas-comision-tagline {
+    font-size: 15px;
+    &::before, &::after { max-width: 30px; }
+  }
+
+  // font-size y nowrap del botón estaban forzados con !important / inline.
+  .btnReglamento {
+    font-size: 17px !important;
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+// ===================================================
+// CONTACTO
+// ===================================================
+@include below(559px) {
+  // Card de cada nivel: logo arriba, título y mail centrados abajo.
+  .contact-card--level {
+    flex-direction: column;
+    text-align: center;
+    gap: $space-2;
+
+    img { width: 110px; }
+  }
+
+  .contact-card__level-title {
+    font-size: 22px !important;
+    margin-top: 0;
+  }
+
+  .contact-card__email-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .map-embed,
+  .map-embed iframe { min-height: 260px; }
+}
+
+// ===================================================
+// INSCRIPCIONES
+// ===================================================
+@include below(799px) {
+  .insc-title { font-size: 26px; }
+}
+
+@include below(559px) {
+  .insc-title {
+    font-size: 21px;
+    &::before, &::after { max-width: 30px; }
+  }
+
+  .insc-alert { padding: $space-2 $space-3; }
+  .insc-alert--hero {
+    padding: $space-3 $space-3;
+    svg { width: 30px; height: 30px; }
+  }
+
+  .insc-level { padding: $space-3; }
+
+  .insc-step {
+    gap: $space-2;
+    &__marker { width: 40px; height: 40px; font-size: 19px; }
+    &__body {
+      h4 { font-size: 16px; }
+      p { font-size: 15px; }
+    }
+  }
+
+  .insc-exam-zone { padding: $space-3; }
+}
+
+// ===================================================
+// CENTRO DE ESTUDIANTES + INTERTRIBUS
+// ===================================================
+@include below(559px) {
+  .ce-zone,
+  .it-zone { padding: $space-3; }
+
+  .ce-zone--dark,
+  .it-zone--dark { padding-left: $space-3; padding-right: $space-3; }
+
+  .ce-cta { padding: $space-3; }
+
+  .it-historial {
+    th { padding: 0 0.5rem 0.5rem; font-size: 0.72rem; }
+    td { padding: 0.7rem 0.5rem; font-size: 0.85rem; }
+  }
+}
+
+// ===================================================
+// CELUS CHICOS  (≤ 380px)
+// ===================================================
+@include below(380px) {
+  .nav__brand span { font-size: 0.85rem; }
+
+  .stat-bar { grid-template-columns: 1fr 1fr; }
+  .stat__label { font-size: 0.72rem; }
+
+  @each $p in ni, np, ns, me {
+    .#{$p}-header__titulo { font-size: 23px; }
+    .#{$p}-header__subtitulo { font-size: 23px; }
+  }
+}
