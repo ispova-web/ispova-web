@@ -1,0 +1,281 @@
+// ===================================================
+// Equipo Directivo — pages/institucion/equipo-directivo.html
+// Mismo sistema de franjas de color (paper/peach) que usan
+// las páginas de Propuesta Educativa.
+// ===================================================
+
+.ed-zone {
+  border-radius: $radius-lg;
+  padding: $space-4;
+  margin-bottom: $space-4;
+  @include bp(md) { padding: $space-5; }
+
+  &--paper { background: $color-paper; }
+  &--peach {
+    background: #2C2A27;
+    border-radius: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    padding-right: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    @include bp(md) {
+      padding-left: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+      padding-right: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+    }
+  }
+}
+
+// Título flanqueado por líneas naranjas, como en el boceto.
+.ed-section-title {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  font-size: 1.3rem;
+  text-align: center;
+  margin-bottom: $space-4;
+  color: inherit;
+
+  &::before, &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: $color-orange;
+  }
+}
+
+// Caja gris con el texto/cita, reutilizada en las dos secciones.
+.ed-box {
+  background: #E4E4E4;
+  color: $color-ink;
+  border-radius: $radius-md;
+  padding: $space-3 $space-4;
+  margin-bottom: $space-4;
+
+  p { margin-bottom: 0.5rem; }
+  p:last-child { margin-bottom: 0; }
+
+  &--center {
+    text-align: center;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Cita con comilla grande decorativa (sin caja) — así estaba en el
+// primer diseño de la sección "Nuestro lema".
+.ed-quote {
+  max-width: 720px;
+  margin: 0 auto $space-4;
+  text-align: center;
+  font-family: $font-display;
+  font-size: $fs-h2;
+  color: $color-charcoal;
+  position: relative;
+  padding: 0 $space-4;
+
+ 
+
+  &--dark { color: $color-white; }
+}
+
+// --- Palabras del equipo directivo: foto + valores con ícono ---
+.ed-mission {
+  display: grid;
+  gap: $space-4;
+  @include bp(lg) { grid-template-columns: 1fr 1.3fr; align-items: start; }
+}
+
+.ed-mission__photo .img-placeholder {
+  aspect-ratio: 1/1;
+  min-height: 260px;
+}
+
+.ed-mission__values {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.ed-value {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+
+    
+
+  // Alterna de qué lado queda el círculo: derecha, izquierda, derecha, izquierda.
+  &--left { flex-direction: row-reverse; }
+}
+
+.cardFraseIconoFondo{
+    background-color: #f2f2f2;
+    padding: 9px;
+    border-radius: 11px;
+}
+
+.ed-value__text {
+  flex: 1;
+
+  p {
+    font-size: 0.9rem;
+    color: $color-ink-soft;
+    margin-bottom: 0.5rem;
+  }
+
+  p:last-child { margin-bottom: 0; }
+}
+
+.ed-value__icon {
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 1.5px solid $color-orange;
+  background: $color-white;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+
+  img { width: 85%; object-fit: cover; }
+}
+
+// --- Nuestro lema + Equipo Directivo (zona oscura) ---
+.ed-lema-text {
+  text-align: center;
+  font-size: 0.92rem;
+  color: #F2790C;
+}
+
+// Renglones blancos a los costados (título del lema y frase de abajo).
+.ed-lined {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  justify-content: center;
+
+  &::before, &::after {
+    content: "";
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: $color-white;
+  }
+}
+
+// Equipo Directivo: sin fondo de color, sección aparte de "Nuestro lema".
+.ed-team {
+  margin-bottom: $space-4;
+}
+
+.ed-team-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  margin-bottom: $space-3;
+
+  &::before, &::after {
+    content: "";
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: $color-orange;
+  }
+
+  span {
+    display: inline-block;
+    color: $color-ink;
+    font-size: 47px;
+    padding: 0.5rem 1.4rem;
+  }
+}
+
+// Filtro por nivel: clickeable, muestra el equipo de ese nivel.
+.ed-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-bottom: $space-4;
+}
+
+.ed-filter-btn {
+  background: $color-white;
+  border: 1.5px solid $color-line;
+  color: $color-ink-soft;
+  font-family: $font-display;
+  font-weight: 600;
+  font-size: 1.85rem;
+  padding: 0.6rem 1.3rem;
+  border-radius: $radius-pill;
+  transition: all $transition-fast;
+
+  &:hover { border-color: $color-orange; color: $color-orange-dark; }
+
+  &.is-active {
+    background: $color-orange;
+    border-color: $color-orange;
+    color: $color-white;
+  }
+}
+
+.team-grid {
+  // Flex en vez de grid con columnas fijas: así 1, 2 o 3 integrantes
+  // quedan agrupados y centrados, sin estirarse a lo ancho de la fila.
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $space-3;
+
+  // El display:flex de arriba le gana por orden de cascada al display:none
+  // que pone el navegador para el atributo [hidden] — sin esto, el filtro
+  // por nivel no ocultaba nada.
+  &[hidden] { display: none; }
+}
+
+.team-member {
+  width: 140px;
+  text-align: center;
+
+  &__circle {
+    width: 139px;
+    height: 131px;
+    border-radius: 50%;
+    background: $color-orange;
+    color: $color-white;
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: 3.4rem;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 0.8rem;
+    box-shadow: $shadow-card;
+    border: 4px solid $color-white;
+    outline: 2px solid $color-orange-light;
+  }
+
+  h4 { font-size: 23px; margin-bottom: 0.2rem; }
+  p { font-size: 0.82rem; color: $color-ink-soft; }
+}
+
+// La imagen de la frase tarda en cargar (PNG pesado) — que no dependa
+// de opacity (se ve como si siguiera cargando cuando recién aparece),
+// solo que suba desde abajo.
+.reveal--slide {
+  opacity: 1;
+  transform: translateY(40px);
+  transition: transform 0.7s $ease;
+
+  &.is-visible { transform: translateY(0); }
+}
+
+.fraseEquipoDirectivo{
+  width: 58%;
+    margin-top: -102px;
+    margin-bottom: 109px;
+    margin-left: auto;
+    margin-right: auto;
+}
+

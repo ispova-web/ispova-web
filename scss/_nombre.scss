@@ -1,0 +1,162 @@
+// ===================================================
+// Nombre — pages/institucion/nombre.html
+// ===================================================
+
+.nombre-hero-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+
+  &::before, &::after {
+    content: "";
+    flex: 1;
+    max-width: 140px;
+    height: 1px;
+    background: $color-orange;
+  }
+}
+
+.nombre-layout {
+  display: grid;
+  gap: $space-4;
+  align-items: stretch; // así la columna de la foto toma el alto de la del acordeón
+  @include bp(lg) { grid-template-columns: 320px 1fr; }
+}
+
+.nombre-portrait {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  // Ya hay una foto real acá, no hace falta el borde punteado ni el
+  // fondo rayado del placeholder genérico. flex:1 + object-fit para
+  // que la foto crezca y llene el alto disponible de la columna.
+  .img-placeholder {
+    margin-bottom: $space-2;
+    border: none;
+    background: none;
+    flex: 1;
+    overflow: hidden;
+
+    img { width: 100%; height: 100%; object-fit: cover; }
+  }
+
+  p { font-weight: 700; font-family: $font-display; color: $color-charcoal; }
+}
+
+// --- "¿Por qué lleva su nombre?" — franja gris oscuro a todo el
+// ancho, mismo estilo que "Nuestro lema" en Equipo Directivo. ---
+.nombre-zone {
+  border-radius: $radius-lg;
+  padding: $space-4;
+  margin-top: $space-6;
+  margin-bottom: -$space-4; // achica el espacio que deja el padding de la section antes del footer
+  @include bp(md) { padding: $space-5; }
+
+  &--peach {
+    background: #2C2A27;
+    border-radius: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    padding-right: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    @include bp(md) {
+      padding-left: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+      padding-right: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+    }
+  }
+}
+
+.nombre-why-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  font-size: 1.3rem;
+  color: $color-orange;
+  margin-bottom: $space-3;
+
+  &::before, &::after {
+    content: "";
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: $color-orange;
+  }
+}
+
+.nombre-why-text {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+}
+
+// --- Acordeón de la biografía --------------------------------
+.accordion-item {
+  border: 1px solid $color-line;
+  border-radius: $radius-md;
+  background: $color-white;
+  margin-bottom: 0.7rem;
+  overflow: hidden;
+  transition: transform $transition-fast, box-shadow $transition-fast, border-color $transition-fast;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: $shadow-card;
+    border-color: $color-orange;
+  }
+}
+
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  background: none;
+  border: none;
+  padding: $space-3;
+  text-align: left;
+  font-family: $font-display;
+  font-weight: 600;
+  color: $color-charcoal;
+
+  .accordion-icon {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid $color-orange;
+    display: grid;
+    place-items: center;
+    transition: transform $transition-fast, background $transition-fast;
+
+    svg {
+      width: 12px;
+      height: 12px;
+      color: $color-orange;
+      transition: transform $transition-fast;
+    }
+  }
+
+  &[aria-expanded="true"] .accordion-icon {
+    background: $color-orange;
+
+    svg { color: $color-white; transform: rotate(180deg); }
+  }
+}
+
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height $transition-med;
+
+  &__inner {
+    padding: 0 $space-3 $space-3 4.1rem;
+    font-size: 0.92rem;
+    color: $color-ink-soft;
+  }
+}

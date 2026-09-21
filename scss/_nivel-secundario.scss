@@ -1,0 +1,299 @@
+// ===================================================
+// Nivel Secundario — pages/propuesta-educativa/nivel-secundario.html
+// Todo lo de esta página vive acá, con clases propias
+// (prefijo ns-). Nada se comparte con Inicial/Primario.
+// ===================================================
+
+.ns-zone {
+  border-radius: $radius-lg;
+  padding: $space-4;
+  margin-bottom: $space-4;
+  @include bp(md) { padding: $space-5; }
+
+  &--paper { background: $color-paper; }
+  &--peach {
+    background: #2C2A27;
+    border-radius: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    padding-right: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    @include bp(md) {
+      padding-left: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+      padding-right: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+    }
+  }
+  // Misión / Valores / Visión: banda naranja clara, distinta del gris
+  // oscuro de la sección de trámites de más abajo.
+  &--mvv {
+    background: #ff8a1aed;
+    border-radius: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    padding-right: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    @include bp(md) {
+      padding-left: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+      padding-right: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+    }
+  }
+}
+
+.ns-header {
+  align-items: center;
+  justify-content: space-evenly;
+  display: flex;
+  @include bp(md) { grid-template-columns: 380px 1fr; }
+}
+
+.ns-header__logo img {
+  width: 100%;
+  max-width: 804px;
+  margin: -105px -61px auto;
+  display: block;
+}
+
+.ns-header__title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  justify-content: center;
+}
+
+.ns-header__titulo {
+  font-size: 51px;
+  margin-top: -174px;
+  font-family: "Changa One", sans-serif;
+}
+
+.ns-header__badge {
+  flex-shrink: 0;
+  width: 135px;
+  height: 134px;
+  border-radius: 50%;
+  border: 1.5px solid $color-orange;
+  display: grid;
+  place-items: center;
+  img { width: 94px; object-fit: contain; }
+}
+
+.ns-header__subtitulo {
+  font-size: 48px;
+  border-top: 1px dashed black;
+  border-bottom: 1px dashed black;
+  padding: 5px;
+}
+
+.ns-schedule {
+  text-align: center;
+  margin-top: 0.5rem;
+      margin-left: 101px;
+
+  i { font-size: 22px; color: $color-orange; }
+}
+
+.ns-schedule__label {
+  display: block;
+  font-size: 0.68rem;
+  color: $color-ink-soft;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.35rem;
+}
+
+.ns-schedule__value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: $color-ink;
+}
+
+.ns-schedule__bar {
+  display: block;
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background: $color-orange;
+  margin: 0.4rem auto 0;
+}
+
+.ns-info-grid {
+  display: grid;
+  gap: $space-3;
+  margin: $space-5 0;
+  align-items: start;
+  @include bp(md) { grid-template-columns: 1fr 1fr; }
+}
+
+.ns-info-card {
+  border: 3px solid #ffc75fd9;
+  padding: 18px;
+  border-radius: 7px;
+
+  h3 {
+    background: white;
+    color: #2A211A;
+    padding: 0.4rem 1.1rem;
+    border-radius: 10px;
+    font-size: 30px;
+    margin-bottom: 0.8rem;
+    text-align: center;
+  }
+
+  p { font-size: 18px; color: white; }
+}
+
+.ns-readmore-btn {
+  display: flex;
+  width: fit-content;
+  margin: 0.6rem auto 0;
+}
+
+.ns-photo {
+  margin: $space-4 0;
+  .img-placeholder { aspect-ratio: 16/7; min-height: 200px; }
+}
+
+.ns-gallery-cta {
+  margin-bottom: $space-4;
+  display: flex;
+  justify-content: center;
+}
+
+.ns-mvv-scroll {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-4;
+  overflow-x: auto;
+  overflow-y: visible;
+  // Colchón arriba para que la card centrada pueda "subir" sin recortarse,
+  // y padding lateral = mitad del ancho de la card, para que las cards de
+  // los costados queden cortadas a la mitad cuando la del medio está centrada.
+  padding: 50px max(#{$space-3}, calc(50% - 150px)) $space-3;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: max(#{$space-3}, calc(50% - 150px));
+  scrollbar-width: thin;
+  scrollbar-color: black white;
+
+  &::-webkit-scrollbar { height: 15px; }
+  &::-webkit-scrollbar-track {
+    background: $color-line;
+    border-radius: $radius-pill;
+    margin: 0 70px; // acorta visualmente el largo de la barra
+  }
+  &::-webkit-scrollbar-thumb { background: $color-orange; border-radius: $radius-pill; }
+}
+
+.ns-mvv-card {
+  flex: 0 0 300px;
+  scroll-snap-align: center;
+  transition: transform 0.25s $ease, box-shadow 0.25s $ease;
+  will-change: transform;
+  transform: translateY(0) scale(0.65);
+  border-radius: 20px;
+  padding: 5px;
+  background-color: #ffffff;
+
+  .img-placeholder { aspect-ratio: 5/4; min-height: 190px; }
+
+  &.is-centered {
+    box-shadow:  0 10px 34px rgba(5, 5, 5, 0.16);
+  }
+}
+
+.ns-mvv-card__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: $space-2;
+
+  h3 { font-size: 29px; text-transform: uppercase; letter-spacing: 0.02em; }
+
+  img {
+    width: 91px;
+    border-radius: 50%;
+    border: 1px solid black; padding: 6px;
+    object-fit: contain; background: $color-white;
+  }
+}
+
+.ns-tramite-row {
+  display: grid;
+  gap: $space-4;
+  margin: $space-4 auto 0;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  @include bp(md) { grid-template-columns: repeat(3, 1fr); }
+
+  &--pair {
+    @include bp(md) {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+.ns-select-icon { max-width: 17%; }
+
+.ns-tramite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2;
+  transition: transform $transition-fast;
+
+  &:hover, &:focus-visible {
+    transform: translateY(-4px);
+    .ns-tramite__icon { border-color: $color-orange; box-shadow: $shadow-card; }
+    .ns-tramite__label { border-color: $color-orange; color: $color-orange-dark; }
+  }
+}
+
+.ns-tramite__icon {
+  width: 195px;
+  height: 189px;
+  border-radius: 50%;
+  background: $color-white;
+  border: 5px solid orange;
+  display: grid;
+  place-items: center;
+  img { width: 128px; object-fit: contain; }
+}
+
+.ns-tramite__label {
+  display: inline-flex;
+  border: 1px solid #7a7777;
+  border-radius: $radius-sm;
+  padding: 0.5rem 1rem;
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+  width: 329px;
+  align-items: center;
+  justify-content: center;
+  a { color: $color-orange-dark; font-weight: 500; }
+}
+
+.ns-copy-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid $color-line;
+  background: $color-orange-pale;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: background $transition-fast, transform $transition-fast;
+
+  img { width: 23px; object-fit: contain; }
+
+  &:hover { background: $color-orange; transform: scale(1.05); }
+}

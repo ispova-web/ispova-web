@@ -1,0 +1,133 @@
+// ===================================================
+// Contacto — pages/contacto.html
+// ===================================================
+
+.contact-intro {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto $space-5;
+  color: $color-ink-soft;
+}
+
+.contact-grid {
+  display: grid;
+  gap: $space-4;
+
+  @include bp(lg) {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: start;
+  }
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  background: $color-white;
+  border: 1px solid $color-line;
+  border-radius: $radius-md;
+  padding: $space-3;
+  box-shadow: $shadow-card;
+
+  img {
+    width: 140px;
+    flex-shrink: 0;
+  }
+
+  &__body { flex: 1; }
+
+  h3 { font-size: 0.98rem; margin-bottom: 0.2rem; }
+
+  a {
+    color: $color-orange-dark;
+    font-weight: 600;
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+}
+
+// Cards de nivel: logo grande + título con renglones + fila de mail con
+// ícono circular naranja y botón de copiar al lado.
+.contact-card--level {
+  align-items: center;
+}
+
+.contact-card__level-title {
+  display: inline-block;
+  width: fit-content;
+  font-size: 26px !important;
+  color: $color-ink;
+  border-top: 1px dashed $color-charcoal;
+  border-bottom: 1px dashed $color-charcoal;
+  padding: 0.35rem 0;
+  margin-bottom: 0.6rem !important;
+  margin-top: -46px;
+}
+
+.contact-card__email-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.contact-card__mail-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid $color-orange;
+  background: $color-white;
+  display: grid;
+  place-items: center;
+
+  svg { width: 16px; height: 16px; color: $color-orange-dark; }
+}
+
+.contact-copy-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid $color-line;
+  background: $color-orange-pale;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: background $transition-fast, transform $transition-fast;
+
+  svg { width: 14px; height: 14px; color: $color-orange-dark; }
+
+  &:hover {
+    background: $color-orange;
+    transform: scale(1.05);
+
+    svg { color: $color-white; }
+  }
+}
+
+.map-embed {
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-card;
+  border: 1px solid $color-line;
+  min-height: 320px;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    border: 0;
+  }
+}
+
+.side-info {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  margin-top: $space-3;
+}

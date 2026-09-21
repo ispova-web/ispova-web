@@ -1,0 +1,248 @@
+// ===================================================
+// Nivel Primario — pages/propuesta-educativa/nivel-primario.html
+// Todo lo de esta página vive acá, con clases propias
+// (prefijo np-). Nada se comparte con Inicial/Secundario.
+// ===================================================
+
+.np-zone {
+  border-radius: $radius-lg;
+  padding: $space-4;
+  margin-bottom: $space-4;
+  @include bp(md) { padding: $space-5; }
+
+  &--paper { background: $color-paper; }
+  &--peach {
+    background: #2C2A27;
+    border-radius: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    padding-right: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    @include bp(md) {
+      padding-left: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+      padding-right: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+    }
+  }
+}
+
+.np-header {
+  align-items: center;
+  justify-content: space-evenly;
+  display: flex;
+  @include bp(md) { grid-template-columns: 380px 1fr; }
+}
+
+.np-header__logo img {
+  width: 100%;
+  max-width: 476px;
+  margin: -93px -61px auto;
+  display: block;
+}
+
+.np-header__title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  justify-content: center;
+}
+
+.np-header__titulo {
+  font-size: 54px;
+  margin-top: -62px;
+  font-family: "Changa One", sans-serif;
+}
+
+.np-header__badge {
+  flex-shrink: 0;
+  width: 135px;
+  height: 134px;
+  border-radius: 50%;
+  border: 1.5px solid $color-orange;
+  display: grid;
+  place-items: center;
+  img { width: 94px; object-fit: contain; }
+}
+
+.np-header__subtitulo {
+  font-size: 48px;
+  border-top: 1px dashed black;
+  border-bottom: 1px dashed black;
+  padding: 5px;
+}
+
+.np-schedule {
+  text-align: center;
+  margin-top: 0.5rem;
+      margin-left: 147px;
+
+  i { font-size: 22px; color: $color-orange-dark; }
+}
+
+.np-schedule__label {
+  display: block;
+  font-size: 0.68rem;
+  color: $color-ink-soft;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.35rem;
+}
+
+.np-schedule__value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: $color-ink;
+}
+
+.np-schedule__bar {
+  display: block;
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background: $color-orange-dark;
+  margin: 0.4rem auto 0;
+}
+
+.np-info-grid {
+  display: grid;
+  gap: $space-3;
+  margin: $space-5 0;
+  @include bp(md) { grid-template-columns: 1fr 1fr; }
+}
+
+.np-info-card {
+  border: 3px solid #ffc75fd9;
+  padding: 18px;
+  border-radius: 7px;
+
+  h3 {
+    background: white;
+    color: #2A211A;
+    padding: 0.4rem 1.1rem;
+    border-radius: 10px;
+    font-size: 38px;
+    margin-bottom: 0.8rem;
+    text-align: center;
+  }
+
+  p { font-size: 0.88rem; color: white; }
+
+  .btn--ghost {
+    display: flex;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.np-values-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: $space-3 0 $space-5;
+
+  &--pair {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    .np-pill { text-align: center; }
+  }
+}
+
+.np-pill {
+  background: $color-orange-pale;
+  color: $color-orange-dark;
+  font-size: 26px;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: $radius-pill;
+}
+
+.np-photo {
+  margin: $space-4 0;
+  .img-placeholder { aspect-ratio: 16/7; min-height: 200px; }
+}
+
+.np-gallery-cta {
+  margin-bottom: $space-4;
+  display: flex;
+  justify-content: center;
+}
+
+.np-tramite-row {
+  display: grid;
+  gap: $space-4;
+  margin: $space-4 auto 0;
+  text-align: center;
+  @include bp(md) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.np-tramite-row__tail {
+  display: contents;
+  @include bp(md) {
+    display: flex;
+    grid-column: 1 / -1;
+    justify-content: center;
+    gap: $space-4;
+  }
+}
+
+.np-select-icon { max-width: 17%; }
+
+.np-tramite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2;
+  transition: transform $transition-fast;
+
+  &:hover, &:focus-visible {
+    transform: translateY(-4px);
+    .np-tramite__icon { border-color: $color-orange; box-shadow: $shadow-card; }
+    .np-tramite__label { border-color: $color-orange; color: $color-orange-dark; }
+  }
+}
+
+.np-tramite__icon {
+  width: 195px;
+  height: 189px;
+  border-radius: 50%;
+  background: $color-white;
+  border: 5px solid orange;
+  display: grid;
+  place-items: center;
+  img { width: 128px; object-fit: contain; }
+}
+
+.np-tramite__label {
+  display: inline-flex;
+  border: 1px solid #7a7777;
+  border-radius: $radius-sm;
+  padding: 0.5rem 1rem;
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+  width: 329px;
+  align-items: center;
+  justify-content: center;
+  a { color: $color-orange-dark; font-weight: 500; }
+}
+
+.np-copy-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid $color-line;
+  background: $color-orange-pale;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: background $transition-fast, transform $transition-fast;
+
+  img { width: 23px; object-fit: contain; }
+
+  &:hover { background: $color-orange; transform: scale(1.05); }
+}

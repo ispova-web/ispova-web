@@ -1,0 +1,329 @@
+// ===================================================
+// Nivel Inicial — pages/propuesta-educativa/nivel-inicial.html
+// Todo lo de esta página vive acá, con clases propias
+// (prefijo ni-). Nada se comparte con Primario/Secundario.
+// ===================================================
+
+.ni-zone {
+  border-radius: $radius-lg;
+  padding: $space-4;
+  margin-bottom: $space-4;
+  @include bp(md) { padding: $space-5; }
+
+  &--paper { background: $color-paper; }
+  &--peach {
+    background: #2C2A27;
+    border-radius: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    padding-right: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    @include bp(md) {
+      padding-left: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+      padding-right: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+    }
+  }
+}
+
+.ni-header {
+  align-items: center;
+  justify-content: space-evenly;
+  display: flex;
+  @include bp(md) { grid-template-columns: 380px 1fr; }
+}
+
+.ni-header__logo img {
+  width: 100%;
+  max-width: 476px;
+  margin: -93px -61px auto;
+  display: block;
+}
+
+.ni-header__title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  justify-content: center;
+}
+
+.ni-header__titulo {
+  font-size: 54px;
+  margin-top: -62px;
+  font-family: "Changa One", sans-serif;
+}
+
+.ni-header__badge {
+  flex-shrink: 0;
+  width: 135px;
+  height: 134px;
+  border-radius: 50%;
+  border: 1.5px solid $color-orange;
+  display: grid;
+  place-items: center;
+  img { width: 94px; object-fit: contain; }
+}
+
+.ni-header__subtitulo {
+  font-size: 48px;
+  border-top: 1px dashed black;
+  border-bottom: 1px dashed black;
+  padding: 5px;
+}
+
+.ni-schedule {
+  display: flex;
+  gap: $space-4;
+  justify-content: center;
+  margin-top: 0.5rem;
+  margin-left:151px;
+}
+
+.ni-schedule__item {
+  text-align: center;
+
+  i { font-size: 22px; color: $color-orange; }
+
+  &--tarde i { color: $color-orange-dark; }
+}
+
+.ni-schedule__label {
+  display: block;
+  font-size: 0.68rem;
+  color: $color-ink-soft;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.35rem;
+}
+
+.ni-schedule__value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: $color-ink;
+}
+
+.ni-schedule__sala {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 700;
+  color: $color-orange-dark;
+  background: #f7f7f7; 
+  border: 1px solid black;
+  border-radius: $radius-pill;
+  padding: 0.2rem 0.7rem;
+  margin-top: 0.35rem;
+}
+
+.ni-schedule__bar {
+  display: block;
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background: $color-orange;
+  margin: 0.4rem auto 0;
+}
+
+.ni-schedule__item--tarde .ni-schedule__bar { background: $color-orange-dark; }
+
+.ni-info-grid {
+  display: grid;
+  gap: $space-3;
+  margin: $space-5 0;
+  @include bp(md) { grid-template-columns: 1fr 1fr; }
+}
+
+.ni-info-card {
+  border: 3px solid #ffc75fd9;
+  padding: 18px;
+  border-radius: 7px;
+
+  h3 {
+    background: white;
+    color: #2A211A;
+    padding: 0.4rem 1.1rem;
+    border-radius: 10px;
+    font-size: 38px;
+    margin-bottom: 0.8rem;
+    text-align: center;
+  }
+
+  p { font-size: 0.88rem; color: white; }
+
+  .btn--ghost {
+    display: flex;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.ni-values-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: $space-3 0 $space-5;
+}
+
+.ni-pill {
+  background: $color-orange-pale;
+  color: $color-orange-dark;
+  font-size: 26px;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: $radius-pill;
+}
+
+.ni-photo {
+  margin: $space-4 0;
+  .img-placeholder { aspect-ratio: 16/7; min-height: 200px; }
+}
+
+.ni-tramite-row {
+  display: grid;
+  gap: $space-4;
+  margin: $space-4 auto 0;
+  text-align: center;
+  @include bp(md) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.ni-select-icon { max-width: 17%; }
+
+.ni-tramite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2;
+  transition: transform $transition-fast;
+
+  &:hover, &:focus-visible {
+    transform: translateY(-4px);
+    .ni-tramite__icon { border-color: $color-orange; box-shadow: $shadow-card; }
+    .ni-tramite__label { border-color: $color-orange; color: $color-orange-dark; }
+  }
+}
+
+.ni-tramite__icon {
+  width: 195px;
+  height: 189px;
+  border-radius: 50%;
+  background: $color-white;
+  border: 5px solid orange;
+  display: grid;
+  place-items: center;
+  img { width: 128px; object-fit: contain; }
+}
+
+.ni-tramite__label {
+  display: inline-flex;
+  border: 1px solid #7a7777;
+  border-radius: $radius-sm;
+  padding: 0.5rem 1rem;
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+  width: 329px;
+  align-items: center;
+  justify-content: center;
+  a { color: $color-orange-dark; font-weight: 500; }
+}
+
+.ni-copy-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid $color-line;
+  background: $color-orange-pale;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: background $transition-fast, transform $transition-fast;
+
+  img { width: 23px; object-fit: contain; }
+
+  &:hover { background: $color-orange; transform: scale(1.05); }
+}
+
+// Cita + video de "filosofía de aprendizaje"
+.ni-cita {
+  max-width: 1100px;
+  margin: 48px auto;
+  padding: 42px 48px;
+  background: #FAF8F5;
+  border-left: 5px solid #ED8B2F;
+  border-radius: 2px;
+  box-shadow: 0 2px 10px black;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 28px 24px;
+    margin: 32px 16px;
+    gap: 32px;
+  }
+}
+
+.ni-cita__quote {
+  flex: 1 1 50%;
+
+  p {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #333333;
+    margin: 0 0 10px 0;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+
+    &:last-of-type { margin-bottom: 0; }
+  }
+
+  strong {
+    font-style: normal;
+    font-weight: 700;
+    color: #ED8B2F;
+  }
+}
+
+.ni-cita__video {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  video {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-width: 313px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #000;
+  }
+}
+
+.ni-cita__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: #ED8B2F;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+
+  &:hover { background: #d67a1f; }
+
+  svg { width: 16px; height: 16px; flex-shrink: 0; }
+}

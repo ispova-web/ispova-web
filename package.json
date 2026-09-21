@@ -1,0 +1,17 @@
+{
+  "name": "ispova",
+  "version": "1.0.0",
+  "description": "Sitio estático (HTML + SCSS/CSS + JS vanilla) armado a partir de los wireframes: Inicio, Propuesta Educativa, Institución, Administración (Pagos/Becas) y Contacto.",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "sass scss/main.scss css/main.css",
+    "watch-css": "sass scss/main.scss css/main.css --watch"
+  },
+  "devDependencies": {
+    "sass": "^1.101.7"
+  }
+}

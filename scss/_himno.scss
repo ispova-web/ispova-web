@@ -1,0 +1,148 @@
+// ===================================================
+// Himno — pages/institucion/himno.html
+// ===================================================
+
+.himno-hero-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+
+  &::before, &::after {
+    content: "";
+    flex: 1;
+    max-width: 140px;
+    height: 1px;
+    background: $color-orange;
+  }
+}
+
+.himno-layout {
+  display: grid;
+  gap: $space-5;
+  @include bp(lg) { grid-template-columns: 1fr 1fr; }
+}
+
+.himno-lyrics {
+  white-space: pre-line;
+  font-family: $font-display;
+  font-size: 22px;
+  line-height: 1.9;
+  color: $color-charcoal-soft;
+  background: $color-white;
+  border: 1px solid $color-line;
+  border-radius: $radius-md;
+  padding: $space-4;
+
+  // Que no crezca más que el video + autores del costado: se limita
+  // el alto y lo que sobra scrollea adentro.
+  max-height: 520px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: $color-orange $color-line;
+
+  &::-webkit-scrollbar { width: 8px; }
+  &::-webkit-scrollbar-track { background: $color-line; border-radius: $radius-pill; }
+  &::-webkit-scrollbar-thumb { background: $color-orange; border-radius: $radius-pill; }
+}
+
+.himno-authors-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  margin-top: $space-4;
+
+  &__icon {
+    width: 94px;
+    height: 88px;
+    border-radius: 50%;
+    border: 1.5px solid $color-line;
+    background: #f7f7f7;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    img { width: 60%; object-fit: contain; }
+  }
+
+  h3 {
+    font-size: 33px;
+    color: $color-charcoal;
+    border-top: 1px dashed $color-orange;
+    border-bottom: 1px dashed $color-orange;
+    padding: 5px 0;
+  }
+}
+
+.himno-authors {
+  display: flex;
+  gap: $space-4;
+  margin-top: $space-3;
+  justify-content: center;
+
+  div { text-align: center; }
+  span { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: $color-ink-soft; }
+  strong { font-family: $font-display; color: $color-orange-dark; }
+}
+
+// Video del himno: si trae un <img>, se muestra como miniatura con
+// botón de play; si trae un <iframe> (embed real de YouTube), se
+// deja el video de YouTube andar solo, sin overlay ni cursor de "play".
+.himno-video {
+  position: relative;
+  aspect-ratio: 16/9;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $color-charcoal-soft;
+  box-shadow: $shadow-card;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.75;
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  &:has(iframe) {
+    cursor: default;
+    &::after { content: none; }
+  }
+
+  .play-btn {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: $color-orange;
+    display: grid;
+    place-items: center;
+    z-index: 2;
+    box-shadow: $shadow-pop;
+    transition: transform $transition-fast;
+
+    svg { width: 20px; height: 20px; color: $color-white; margin-left: 3px; }
+  }
+
+  &:hover .play-btn { transform: scale(1.1); }
+}

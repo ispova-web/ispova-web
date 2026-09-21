@@ -1,0 +1,442 @@
+// ===================================================
+// Home (Inicio)
+// ===================================================
+
+.hero {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+
+  &__intro {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// Cada bloque del hero vive en su propia franja de color
+.hero__band {
+  position: relative;
+  z-index: 1;
+
+  &--title {
+    background: $color-charcoal;
+    padding: $space-5 0 $space-4;
+    border-bottom: 3px solid #050505;
+    overflow: hidden;
+
+    .eyebrow { color: $color-orange-light; }
+    .eyebrow::before, .eyebrow::after { background: $color-orange; opacity: 0.8; }
+    h1 { color: $color-white; }
+  }
+
+  &--datos {
+    background: $color-paper;
+    padding: $space-4 0 $space-5;
+    margin-top: -28px;
+  }
+
+  &--novedades {
+    background: #ff9412bd;;
+    padding: $space-4 0 $space-5;
+  }
+}
+
+// Corte en V, siempre justo después del carrusel
+.hero__cut {
+  height: 50px;
+  margin-top: -1px;
+  background: $color-paper;
+  clip-path: polygon(0 100%, 0 28%, 50% 100%, 100% 28%, 100% 100%);
+  position: relative;
+  z-index: 2;
+
+  @include bp(md) {
+    height: 80px;
+  }
+}
+
+.stat-bar-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.inst-section .section-title {
+  margin-bottom: 6.8rem;
+}
+
+// La reseña histórica se oscurece para separarse de "Instituciones" arriba
+// y de "Misión/Valores/Visión" (durazno) abajo.
+.story-section {
+  background: $color-charcoal-soft;
+
+  .eyebrow { color: $color-orange-light; }
+  .eyebrow::before, .eyebrow::after { background: $color-orange; opacity: 0.7; }
+  .section-title { color: $color-white; }
+  p { color: rgba(255, 255, 255, 0.72); }
+
+  .video-thumb {
+    background: $color-charcoal;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .btn--ghost {
+    color: $color-white;
+    border-color: rgba(255, 255, 255, 0.5);
+
+    &:hover {
+      background: $color-white;
+      color: $color-charcoal;
+    }
+  }
+}
+
+.mission-section {
+  background: #ff9412bd;
+  border-top: 42px solid white;
+  border-bottom: 42px solid white; // deja un espacio en blanco antes del footer
+}
+
+.mission-cta {
+  text-align: center;
+  margin-bottom: $space-3;
+}
+
+.mission-divider {
+  height: 0;
+  border-top: 2px dashed $color-line;
+  max-width: 100%;
+  margin: 0 0 $space-5;
+}
+
+// --- Recuadro de datos (59 años / +400 alumnos / etc.) ----
+.stat-bar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-3;
+  background: $color-white;
+  border-top: 3px solid #F2790C;
+  border-bottom: 3px solid #F2790C;
+  border-radius: $radius-lg;
+  padding: $space-4;
+  box-shadow: $shadow-card;
+
+  @include bp(md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.3rem;
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    margin-bottom: 0.2rem;
+
+    img { width: 47%; }
+  }
+
+  &__number {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $color-charcoal;
+  }
+
+  &__label {
+    font-size: 0.78rem;
+    color: $color-ink-soft;
+  }
+}
+
+.statUltimo {
+  justify-content: flex-end !important;
+}
+
+.stat-bar-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+// --- Carrusel de fotos del hero ----------------------------
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  max-height: 60vh;
+  background: $color-charcoal-soft;
+  z-index: 1;
+  border-bottom: 3px solid #050505;
+
+  @include bp(md) { aspect-ratio: 2.2/1; max-height: 55vh; }
+  @include bp(lg) { aspect-ratio: 2.6/1; max-height: 60vh; }
+}
+
+.hero-carousel__track {
+  display: flex;
+  height: 100%;
+  transition: transform $transition-med;
+}
+
+.hero-carousel__slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+
+  img { width: 100%; height: 100%; object-fit: cover; }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, transparent 55%);
+  }
+}
+
+.hero-carousel__caption {
+  position: absolute;
+  left: $space-4;
+  bottom: $space-3;
+  color: $color-white;
+  font-family: $font-display;
+  font-weight: 600;
+  z-index: 2;
+  font-size: 23px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.hero-carousel__dots {
+  position: absolute;
+  bottom: $space-2;
+  right: $space-3;
+  display: flex;
+  gap: 6px;
+  z-index: 3;
+}
+
+.hero-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  padding: 0;
+  transition: background $transition-fast, transform $transition-fast;
+
+  &.is-active { background: $color-orange; transform: scale(1.3); }
+}
+
+// --- Cartel de novedades ------------------------------------
+.novedades {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  background: white;
+  border-radius: $radius-lg;
+  padding: $space-3 $space-4;
+  border: 1px solid $color-orange;
+}
+
+.novedades__icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: $color-orange;
+  color: $color-white;
+  display: grid;
+  place-items: center;
+  font-family: $font-display;
+  font-weight: 700;
+      font-size: 31px;
+
+}
+
+.novedades__text {
+  flex: 1;
+
+  h3 { font-size: 2rem; margin-bottom: 0.15rem; }
+  p { font-size: 0.88rem; color: $color-ink-soft; margin: 0; }
+}
+
+.novedades__arrow {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: $radius-pill;
+  background: $color-charcoal;
+  color: $color-white;
+  font-family: $font-display;
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+  border: none;
+  transition: transform $transition-fast, background $transition-fast;
+
+  svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  &:hover { background: $color-orange; transform: translateX(4px); }
+}
+
+// La campanita se "agita" cada 4s, como si llegara una notificación.
+@keyframes bell-ring {
+  0%, 100% { transform: rotate(0deg); }
+  2% { transform: rotate(-14deg); }
+  4% { transform: rotate(12deg); }
+  6% { transform: rotate(-10deg); }
+  8% { transform: rotate(8deg); }
+  10% { transform: rotate(-6deg); }
+  12% { transform: rotate(4deg); }
+  14% { transform: rotate(-2deg); }
+  16% { transform: rotate(0deg); }
+}
+
+.novedades-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  margin-bottom: $space-3;
+  color: black;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transform-origin: top center;
+    animation: bell-ring 2s ease-in-out infinite;
+  }
+
+  &::before, &::after {
+    content: "";
+    flex: 1;
+    max-width: 140px;
+    height: 1px;
+    background: $color-white;
+  }
+}
+
+.novedades-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  margin-top: $space-5;
+}
+
+// --- Nuestras Instituciones (tarjetas) ----------------------
+.inst-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-3;
+
+  @include bp(md) { grid-template-columns: repeat(4, 1fr); }
+}
+
+.inst-card {
+  background: $color-white;
+  border: 1px solid #F2790C;
+  border-radius: $radius-md;
+  padding: $space-3;
+  text-align: center;
+  box-shadow: $shadow-card;
+  transition: transform $transition-fast, box-shadow $transition-fast;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover { transform: translateY(-4px); box-shadow: $shadow-pop; }
+
+  img { width: 124px; margin-bottom: 0.7rem; object-fit: cover; margin-top: -85px; }
+  h3 { font-size: 21px; margin-bottom: 0.9rem; min-height: 2.4em; }
+}
+
+.inst-section .section-title {
+  margin-bottom: 6.8rem;
+}
+
+// --- Misión / Valores / Visión (tarjetas) -------------------
+.value-grid {
+  display: grid;
+  gap: $space-3;
+  margin-top: 80px; // deja lugar para que los círculos floten arriba de la tarjeta
+
+  @include bp(md) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.value-card {
+  background: $color-white;
+  border-radius: $radius-lg;
+  padding: $space-4;
+  border: 2px solid $color-orange;
+  text-align: center;
+  position: relative;
+
+  &__icon {
+    width: 122px;
+    height: 110px;
+    border-radius: 50%;
+    background: $color-white;
+    border: 2px solid $color-orange;
+    color: $color-charcoal;
+    display: grid;
+    place-items: center;
+    margin: -152px auto $space-3;
+    position: relative;
+    z-index: 1;
+
+    svg { width: 54px; height: 54px; }
+    img { width: 77px; object-fit: contain; }
+  }
+
+  h3 {
+    font-size: 21px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    color: $color-charcoal;
+    letter-spacing: 0.02em;
+    padding-top: 9px;
+  }
+
+  p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: $color-ink-soft;
+    text-align: justify;
+  }
+}
+
+// --- Videos de la reseña histórica ---------------------------
+.home-video-grid {
+  display: grid;
+  gap: $space-3;
+
+  @include bp(md) { grid-template-columns: 1fr 1fr; }
+}
+
+.home-video-thumb {
+  position: relative;
+  aspect-ratio: 16/9;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $color-charcoal;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: $shadow-card;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+}

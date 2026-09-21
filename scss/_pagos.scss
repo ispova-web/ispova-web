@@ -1,0 +1,227 @@
+// ===================================================
+// Pagos — pages/administracion/pagos.html
+// ===================================================
+
+// --- Encabezado gris: "Autogestión" + logo ETNA ---
+.pagos-header {
+  background: #E4E4E4;
+  border-radius: $radius-lg;
+  text-align: center;
+  padding: $space-4 $space-4 $space-5;
+  margin-bottom: $space-4;
+  margin-top: -39px;
+}
+
+.pagos-header-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  font-size: 2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: $color-ink;
+  margin-bottom: $space-4;
+
+  &::before, &::after {
+    content: "";
+    flex: 1;
+    max-width: 160px;
+    height: 1px;
+    background: $color-charcoal;
+  }
+}
+
+.pagos-header-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+
+  img {
+    width: 115px;
+    border-radius: $radius-md;
+    object-fit: cover;
+    box-shadow: $shadow-card;
+  }
+
+  span {
+    font-family: $font-display;
+    font-weight: 800;
+    font-size: 40px;
+    color: $color-ink;
+  }
+}
+
+// --- Fila de dos columnas ---
+.pagos-row {
+  display: grid;
+  gap: $space-4;
+  @include bp(md) { grid-template-columns: 1fr 1fr; }
+}
+
+// Franja gris oscuro a todo el ancho, mismo patrón que las demás
+// páginas del sitio (ni-zone--peach, ed-zone--peach, etc.).
+.pagos-zone {
+  border-radius: $radius-lg;
+  padding: $space-4;
+  margin-top: $space-4;
+  @include bp(md) { padding: $space-5; }
+
+  &--peach {
+    background: #2C2A27;
+    border-radius: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    padding-right: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    @include bp(md) {
+      padding-left: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+      padding-right: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+    }
+  }
+}
+
+// Caja con borde tostado — mismo lenguaje que las cards de
+// Propuesta Educativa (.ni-info-card).
+.pagos-box {
+  background: $color-white;
+  border: 2px solid $color-orange-light;
+  border-radius: $radius-md;
+  padding: $space-4;
+
+  h3 {
+    font-size: 17px;
+    color: $color-ink;
+    margin-bottom: $space-3;
+    text-align: center;
+  }
+}
+
+.pagos-feature {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  margin-bottom: $space-3;
+
+  &:last-child { margin-bottom: 0; }
+
+  p {
+    font-size: 0.92rem;
+    color: $color-ink-soft;
+    margin: 0;
+  }
+}
+
+.pagos-feature__icon {
+  flex-shrink: 0;
+  width: 97px;
+    height: 94px;
+  border-radius: 50%;
+  border: 1.5px solid $color-orange;
+  background: $color-white;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  transition: transform $transition-fast, box-shadow $transition-fast;
+
+  img { width: 75%; object-fit: cover; }
+}
+
+.pagos-feature:hover .pagos-feature__icon {
+  transform: scale(1.08);
+  box-shadow: $shadow-card;
+}
+
+.pagos-methods {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+}
+
+.pagos-plain-list {
+  list-style: none;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+
+  li {
+    font-size: 0.92rem;
+    color: $color-ink-soft;
+    padding-left: 1.1rem;
+    position: relative;
+    margin-bottom: 0.4rem;
+
+    &::before {
+      content: "-";
+      position: absolute;
+      left: 0;
+      color: $color-orange-dark;
+      font-weight: 700;
+    }
+
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+// --- Columna derecha: link a ETNA ---
+.pagos-link-box {
+  text-align: center;
+  padding: $space-3 0;
+
+  h3 {
+    font-size: 1.35rem;
+    color: $color-white;
+    margin-bottom: $space-4;
+  }
+}
+
+.pagos-select-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-3;
+  background: #C7C7C7;
+  color: $color-ink;
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 1.2rem 2.4rem;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+  transition: background $transition-fast, transform $transition-fast, color $transition-fast;
+
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    object-fit: contain;
+  }
+
+  &:hover {
+    background: $color-orange;
+    color: $color-white;
+    transform: translateY(-2px);
+    box-shadow: $shadow-pop;
+  }
+}
+
+// Nota chica tipo recordatorio — antes era una caja grande, ahora
+// una píldora chica para que no le robe protagonismo al botón.
+.pagos-note {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: $color-orange-pale;
+  color: $color-orange-dark;
+  font-size: 0.8rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: $radius-pill;
+  max-width: fit-content;
+  margin: $space-4 auto 0;
+
+  svg { width: 18px; height: 18px; flex-shrink: 0; }
+}

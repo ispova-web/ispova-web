@@ -1,0 +1,217 @@
+// ===================================================
+// Intertribus — pages/institucion/intertribus.html
+// Todo lo de esta página vive acá, con clases propias
+// (prefijo it-). Nada se comparte con otras páginas.
+// ===================================================
+
+$it-amarillo:        #F0C419;
+$it-amarillo-oscuro:  #C99E0E;
+$it-verde:            #3F9142;
+$it-verde-oscuro:     #2E6E31;
+
+.it-intro {
+  max-width: 720px;
+  margin: 0 auto $space-5;
+  font-size: 1.05rem;
+  color: $color-ink-soft;
+  text-align: center;
+}
+
+.it-copa {
+  display: grid;
+  gap: $space-4;
+  align-items: center;
+  margin-bottom: $space-6;
+  @include bp(md) { grid-template-columns: 1fr 1.3fr; }
+
+  .img-placeholder { aspect-ratio: 4/5; }
+}
+
+.it-campeon {
+  background: $color-paper;
+  border: 1px solid $color-line;
+  border-radius: $radius-md;
+  padding: $space-3 $space-4;
+  box-shadow: $shadow-card;
+}
+
+.it-campeon__anio {
+  color: $color-ink-soft;
+  font-size: $fs-small;
+  margin-bottom: 0.3rem;
+}
+
+.it-campeon__titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+}
+
+.it-campeon p {
+  color: $color-ink-soft;
+  margin: 0.5rem 0 0;
+}
+
+.it-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+
+  &--amarilla { background: $it-amarillo; }
+  &--verde { background: $it-verde; }
+  &--naranja { background: $color-orange; }
+}
+
+.it-tribus {
+  display: grid;
+  gap: $space-3;
+  margin-bottom: $space-6;
+  @include bp(md) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.it-tribu {
+  background: $color-paper;
+  border-radius: $radius-md;
+  border-top: 6px solid $color-orange;
+  overflow: hidden;
+  box-shadow: $shadow-card;
+
+  &--amarilla { border-top-color: $it-amarillo; }
+  &--verde { border-top-color: $it-verde; }
+  &--naranja { border-top-color: $color-orange; }
+}
+
+.it-tribu__head {
+  padding: $space-3 $space-3 $space-2;
+
+  h3 { font-size: $fs-h3; margin-bottom: 0.2rem; }
+}
+
+.it-tribu__lema {
+  color: $color-ink-soft;
+  font-size: $fs-small;
+}
+
+.it-tribu__body {
+  padding: 0 $space-3 $space-3;
+}
+
+.it-tribu__contador {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.it-tribu__numero {
+  font-family: $font-display;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: $color-orange-dark;
+
+  .it-tribu--amarilla & { color: $it-amarillo-oscuro; }
+  .it-tribu--verde & { color: $it-verde-oscuro; }
+}
+
+.it-tribu__texto {
+  color: $color-ink-soft;
+  font-size: $fs-small;
+}
+
+.it-tribu__estrellas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  font-size: 1.1rem;
+  color: $color-orange;
+
+  .it-tribu--amarilla & { color: $it-amarillo; }
+  .it-tribu--verde & { color: $it-verde; }
+}
+
+// Franja gris oscuro a todo el ancho — mismo patrón que el resto del sitio.
+.it-zone {
+  border-radius: $radius-lg;
+  padding: $space-4;
+  margin-bottom: $space-6;
+  text-align: left;
+  @include bp(md) { padding: $space-5; }
+
+  &--dark {
+    background: $color-charcoal-soft;
+    color: $color-white;
+    border-radius: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    padding-right: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    @include bp(md) {
+      padding-left: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+      padding-right: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+    }
+  }
+}
+
+.it-zone__lead {
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 600px;
+  margin-bottom: $space-4;
+}
+
+.it-historial {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    text-align: left;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 500;
+    padding: 0 1rem 0.6rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.95rem;
+  }
+
+  tr:last-child td { border-bottom: none; }
+}
+
+.it-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.it-juegos {
+  display: grid;
+  gap: $space-3;
+  margin-bottom: $space-6;
+  @include bp(md) { grid-template-columns: repeat(2, 1fr); }
+}
+
+.it-juego {
+  border-left: 3px solid $color-orange;
+  padding-left: $space-3;
+
+  h3 { font-size: 1.02rem; margin-bottom: 0.3rem; }
+  p { color: $color-ink-soft; margin: 0; font-size: 0.92rem; }
+}
+
+.it-galeria {
+  display: grid;
+  gap: $space-2;
+  grid-template-columns: repeat(2, 1fr);
+  @include bp(md) { grid-template-columns: repeat(4, 1fr); }
+
+  .img-placeholder { aspect-ratio: 1/1; font-size: 0.75rem; }
+  .it-galeria__ancha { grid-column: span 2; aspect-ratio: 2/1; }
+}

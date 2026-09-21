@@ -1,0 +1,165 @@
+// ===================================================
+// Becas — pages/administracion/becas.html
+// ===================================================
+
+.becas-title {
+  text-align: center;
+  margin-bottom: $space-5;
+
+  h1 { font-size: $fs-h1; }
+}
+
+.alert-box {
+  display: flex;
+  gap: $space-3;
+  align-items: flex-start;
+  background: #f27910;
+  border-top: 1px dashed $color-orange;
+  border-bottom: 1px dashed $color-orange;
+  border-radius: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: $space-3 max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+  margin-bottom: $space-4;
+  text-align: left;
+
+  svg {
+    width: 88px;
+    height: 111px;
+    color: #ffedde;
+    flex-shrink: 0;
+  }
+
+  p {
+   font-size: 32px;
+    color: #ffffff;
+  }
+}
+
+.becas-steps {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  text-align: left;
+}
+
+.becas-step {
+  display: flex;
+  gap: $space-3;
+
+  &__marker {
+    flex-shrink: 0;
+    width: 53px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2px solid $color-orange;
+    color: $color-orange-dark;
+    display: grid;
+    place-items: center;
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: 29px;
+  }
+
+  &__body {
+    h4 { font-size: 24px; margin-bottom: 0.3rem; }
+
+    p, ul {
+      font-size: 20px;
+      color: $color-ink-soft;
+    }
+
+    ul { padding-left: 1.1rem; list-style: disc; }
+    li { margin-bottom: 0.2rem; }
+  }
+}
+
+.reglamento-cta {
+  text-align: center;
+  margin-top: $space-4;
+}
+
+// Franja gris oscuro a todo el ancho — mismo patrón que las demás
+// páginas del sitio (ni-zone--peach, ed-zone--peach, etc.).
+.becas-zone {
+  border-radius: $radius-lg;
+  padding: $space-4;
+  margin-top: $space-4;
+  text-align: center;
+  @include bp(md) { padding: $space-5; }
+
+  &--peach {
+    background: #2C2A27;
+    border-radius: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    padding-right: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    @include bp(md) {
+      padding-left: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+      padding-right: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+    }
+  }
+}
+
+.becas-comision-title {
+  color: $color-orange;
+  font-family: $font-display;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 37px;
+}
+
+// "Familia, Educación y Amistad" con renglones naranjas a los costados.
+.becas-comision-tagline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 17px;
+  margin: 0.4rem 0 0;
+
+  &::before, &::after {
+    content: "";
+    flex: 1;
+    max-width: 100px;
+    height: 1px;
+    background: $color-orange;
+    opacity: 0.5;
+  }
+}
+.btnReglamento{
+      font-size: 23px !important;
+}
+
+.becas-reglamento-icon {
+  width: 26px;
+  height: 26px;
+  vertical-align: -6px;
+  margin-right: 0.4rem;
+}
+.subtitulo-becas{
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 22px;
+  font-weight: 700;
+  color: $color-orange-dark;
+  margin-bottom: $space-2;
+
+  &::before, &::after {
+    content: "";
+    height: 1px;
+    width: 40px;
+    background: $color-orange;
+    opacity: 0.5;
+  }
+}

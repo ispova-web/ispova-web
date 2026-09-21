@@ -1,0 +1,200 @@
+// ===================================================
+// Inscripciones — pages/inscripciones.html
+// ===================================================
+
+.insc-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  font-size: 33px;
+  text-align: center;
+  margin: $space-5 0 $space-4;
+
+  &::before, &::after {
+    content: "";
+    flex: 1;
+    max-width: 140px;
+    height: 1px;
+    background: $color-orange;
+  }
+}
+
+section > .container > .insc-title:first-child {
+  margin-top: 0;
+}
+
+.insc-alert {
+  display: flex;
+  gap: $space-3;
+  align-items: flex-start;
+  background: #e3e3e3;
+  border: 1px solid $color-orange;
+  border-radius: $radius-md;
+  padding: $space-3 $space-4;
+  max-width: 720px;
+  margin: 0 auto $space-5;
+
+  svg { width: 24px; height: 24px; color: $color-orange-dark; flex-shrink: 0; }
+  p { font-size: 0.92rem; color: $color-charcoal-soft; margin: 0; }
+  strong { color: $color-charcoal; font-weight: 700; }
+}
+
+// El aviso principal (debajo de "Ciclo Lectivo 2027") ocupa todo el
+// ancho de la pantalla, con su propio color e ícono más grande.
+.insc-alert--hero {
+  background: #ff9f2a;
+  border: none;
+  border-radius: 0;
+  align-items: center;
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: $space-4 max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+
+  svg { width: 36px; height: 36px; color: $color-charcoal; }
+  p { color: $color-charcoal; }
+  strong { color: black; }
+}
+
+// El aviso de Mesa de Examen usa el mismo ícono relleno que el de
+// arriba, un poco más grande que el tamaño base.
+.insc-alert--exam {
+  align-items: center;
+
+  svg { width: 32px; height: 32px; }
+}
+
+.insc-levels {
+  display: grid;
+  gap: $space-4;
+  margin-bottom: $space-5;
+
+  @include bp(sm) { grid-template-columns: repeat(2, 1fr); }
+  @include bp(lg) { grid-template-columns: repeat(4, 1fr); }
+}
+
+.insc-level {
+  background: $color-white;
+  border: 2px solid $color-orange-light;
+  border-radius: $radius-md;
+  padding: $space-4;
+  text-align: center;
+  transition: transform $transition-fast, box-shadow $transition-fast;
+
+  &:hover { transform: translateY(-4px); box-shadow: $shadow-card; }
+
+  img { width: 63px;  object-fit: contain; margin: 0 auto $space-2; }
+  h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+  p { font-size: 0.85rem; color: $color-ink-soft; margin-bottom: $space-3; }
+}
+
+.insc-level__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: $color-orange;
+  color: $color-white;
+  font-family: $font-display;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0.65rem 1.2rem;
+  border-radius: $radius-pill;
+  transition: background $transition-fast, transform $transition-fast;
+
+  svg { width: 16px; height: 16px; }
+
+  &:hover { background: $color-orange-dark; transform: translateY(-2px); }
+}
+
+.insc-steps {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  max-width: 640px;
+  margin: 0 auto $space-5;
+  text-align: left;
+}
+
+.insc-step {
+  display: flex;
+  gap: $space-3;
+
+  &__marker {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid $color-orange;
+    color: $color-orange-dark;
+    display: grid;
+    place-items: center;
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  &__body {
+    h4 { font-size: 18px; margin-bottom: 0.3rem; }
+    p { font-size: 16px; color: $color-ink-soft; }
+  }
+}
+
+.insc-divider {
+  border: none;
+  border-top: 1px dashed #070606;
+  max-width: 530px;
+  margin: 0 auto $space-5;
+}
+
+// --- Inscripción a Mesa de Examen — solo Nivel Secundario, un
+// trámite distinto al de inscripción al nivel: se lo separa en su
+// propia caja con sombra para que no se confundan. ---
+.insc-exam-zone {
+  scroll-margin-top: 110px; // que el header fijo no la tape al llegar desde el ancla de Inicio
+  background: $color-paper;
+  border: 2px solid $color-orange;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-pop;
+  padding: $space-4;
+  max-width: 720px;
+  margin: 0 auto $space-5;
+  text-align: center;
+
+  @include bp(md) { padding: $space-5; }
+
+  .insc-title { margin-top: 0; }
+  .insc-alert { margin-bottom: $space-4; }
+}
+
+.insc-exam-badge {
+  display: inline-block;
+  background: $color-charcoal;
+  color: $color-orange;
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.9rem;
+  border-radius: $radius-pill;
+  margin-bottom: $space-3;
+}
+
+.insc-exam-note {
+  color: $color-ink-soft;
+  font-size: 0.9rem;
+  margin-bottom: $space-4;
+}
+
+.insc-help {
+  text-align: center;
+  padding: $space-4;
+  background: $color-paper;
+  border-radius: $radius-lg;
+  max-width: 500px;
+  margin: 0 auto;
+
+  p { margin-bottom: $space-3; color: $color-ink-soft; }
+}

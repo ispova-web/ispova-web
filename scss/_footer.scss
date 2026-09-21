@@ -1,0 +1,136 @@
+// ===================================================
+// Footer
+// ===================================================
+
+.site-footer {
+  background: #211D1A;
+  color: #D8D3CC;
+  padding: 0 0 1.8rem;
+  border-top: 3px solid #211D1A; // el naranja se perdía contra el fondo de .footer-cta, que es del mismo color
+  box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.18);
+  position: relative;
+  z-index: 1;
+}
+
+// Franja "¿Tenés dudas?" arriba de todo, antes del contenido normal
+// del footer.
+.footer-cta {
+  background: $color-orange;
+}
+
+.footer-cta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: $space-3;
+  padding: $space-3 $space-4;
+
+  span {
+    color: $color-charcoal;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+}
+
+.footer-cta__btn {
+  background: $color-charcoal;
+  color: $color-white;
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.3rem;
+  border-radius: $radius-pill;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background $transition-fast, color $transition-fast, transform $transition-fast;
+
+  &:hover { background: $color-white; color: $color-charcoal; transform: translateY(-2px); }
+}
+
+.footer__logos {
+  display: flex;
+  justify-content: center;
+  gap: $space-4;
+  margin: 2.6rem 0 $space-4;
+  flex-wrap: wrap;
+
+  img {
+    width: 151px;
+    padding: 4px;
+  }
+}
+
+.footer__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+.footer__info a,
+.footer__info span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #D8D3CC;
+  transition: color $transition-fast;
+}
+
+.footer__info a:hover {
+  color: $color-orange;
+}
+
+.footer__info svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: $color-orange;
+}
+
+.footer__copy {
+  margin-top: $space-4;
+  text-align: center;
+  font-size: 0.78rem;
+  color: #8A8378;
+}
+
+// --- Botón "volver arriba" ---------------------------
+.back-to-top {
+  position: fixed;
+  right: $space-4;
+  bottom: $space-4;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: $color-orange;
+  color: $color-white;
+  display: grid;
+  place-items: center;
+  box-shadow: $shadow-pop;
+  cursor: pointer;
+  z-index: 90;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity $transition-med, transform $transition-med, visibility $transition-med, background $transition-fast;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background: $color-charcoal;
+    transform: translateY(-3px);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

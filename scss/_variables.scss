@@ -1,0 +1,65 @@
+// ===================================================
+// ISPOVA — Design tokens
+// ===================================================
+
+// Color palette
+$color-orange:        #F2790C; // primario (logo / sol)
+$color-orange-dark:   #C85E02; // hover / contraste
+$color-orange-light:  #FCE3CB; // fondos suaves (durazno)
+$color-orange-pale:   #FFF1E0;
+$color-charcoal:      #211D1A; // header / footer
+$color-charcoal-soft: #34302C;
+$color-cream:         #FFFFFF; // fondo general
+$color-white:         #FFFFFF;
+$color-paper:         #FFFDF8; // blanco roto, franja de datos
+$color-ink:           #2A211A; // texto principal
+$color-ink-soft:      #6B6058; // texto secundario
+$color-line:          #E9DCC9; // divisores
+$color-success:       #4B7B4A;
+
+// Type
+$font-display: "Baloo 2", "Segoe UI", sans-serif;
+$font-body:    "Inter", "Segoe UI", sans-serif;
+
+$fs-hero:    clamp(2rem, 5vw, 3.4rem);
+$fs-h1:      clamp(1.7rem, 3.2vw, 2.4rem);
+$fs-h2:      clamp(1.35rem, 2.4vw, 1.7rem);
+$fs-h3:      1.15rem;
+$fs-body:    1rem;
+$fs-small:   0.875rem;
+$fs-eyebrow: 0.78rem;
+
+// Layout
+$max-width:      1180px;
+$radius-sm:      10px;
+$radius-md:      16px;
+$radius-lg:      26px;
+$radius-pill:    999px;
+
+$space-1: 0.4rem;
+$space-2: 0.8rem;
+$space-3: 1.2rem;
+$space-4: 1.8rem;
+$space-5: 2.6rem;
+$space-6: 4rem;
+
+// Shadows
+$shadow-soft: 0 10px 30px rgba(33, 29, 26, 0.08);
+$shadow-card: 0 6px 18px rgba(33, 29, 26, 0.10);
+$shadow-pop:  0 16px 40px rgba(33, 29, 26, 0.16);
+
+// Motion
+$ease: cubic-bezier(0.22, 1, 0.36, 1);
+$transition-fast: 0.2s $ease;
+$transition-med:  0.35s $ease;
+
+// Breakpoints
+$bp-sm: 560px;
+$bp-md: 800px;
+$bp-lg: 1100px;
+
+@mixin bp($size) {
+  @if $size == sm { @media (min-width: $bp-sm) { @content; } }
+  @if $size == md { @media (min-width: $bp-md) { @content; } }
+  @if $size == lg { @media (min-width: $bp-lg) { @content; } }
+}

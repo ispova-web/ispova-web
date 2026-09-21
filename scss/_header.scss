@@ -1,0 +1,215 @@
+// ===================================================
+// Header / Navigation
+// ===================================================
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  border-top: 2px solid #000000;
+  border-bottom: 6px solid #F2790C;
+  box-shadow: 0 2px 3px #ffb962
+}
+
+// Aparición del logo, la barra y el menú al cargar la página.
+@keyframes header-appear {
+  from { opacity: 0; transform: translateY(-14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem $space-4;
+  max-width: $max-width;
+  margin: 0 auto;
+
+  @include bp(lg) {
+    justify-content: flex-start;
+    gap: $space-5;
+  }
+}
+
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: $font-display;
+  color: black;
+  font-weight: 700;
+  font-size: 1.05rem;
+  animation: header-appear 0.6s $ease both;
+
+  img {
+    width: 67px;
+  }
+}
+
+.nav__toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 8px;
+
+  @include bp(lg) {
+    display: none;
+  }
+
+  span {
+    width: 24px;
+    height: 2px;
+    background: $color-white;
+    transition: transform $transition-fast, opacity $transition-fast;
+  }
+
+  &[aria-expanded="true"] {
+    span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    span:nth-child(2) {
+      opacity: 0;
+    }
+
+    span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+}
+
+.nav__menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: $color-charcoal;
+  flex-direction: column;
+  padding: $space-2 $space-4 $space-4;
+  border-bottom: 3px solid $color-orange;
+
+  &.is-open {
+    display: flex;
+  }
+
+  @include bp(lg) {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: $space-1;
+    padding: 0;
+    border-bottom: none;
+    background: none;
+    animation: header-appear 0.6s $ease both;
+    animation-delay: 0.15s;
+
+    &::before {
+      content: "";
+      width: 2px;
+      height: 24px;
+      margin-right: $space-3;
+      background: $color-orange;
+      opacity: 0.55;
+      border-radius: 2px;
+      display: inline-block;
+      animation: header-appear 0.5s $ease both;
+      animation-delay: 0.35s;
+    }
+  }
+}
+
+.nav__item {
+  position: relative;
+}
+
+.nav__link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: black;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.85rem 1rem;
+  border-radius: $radius-sm;
+  transition: color $transition-fast, background $transition-fast;
+
+  &:hover,
+  &.is-active {
+    background: #efeaea;
+  }
+
+  &.is-active {
+    color: $color-orange;
+  }
+
+  svg {
+    width: 12px;
+    height: 12px;
+    transition: transform $transition-fast;
+  }
+}
+
+.nav__item.has-dropdown.is-open .nav__link svg {
+  transform: rotate(180deg);
+}
+
+.nav__dropdown {
+  display: none;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-left: $space-3;
+
+  @include bp(lg) {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    min-width: 170px;
+    background: $color-white;
+    border-radius: $radius-sm;
+    box-shadow: $shadow-pop;
+    padding: 0.5rem;
+    margin-top: 0.4rem;
+  }
+}
+
+.nav__item.is-open .nav__dropdown {
+  display: flex;
+}
+
+.nav__dropdown-link {
+  display: block;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+
+  &:hover {
+    background: rgba(242, 121, 12, 0.2);
+    color: $color-white;
+  }
+
+  &.is-active {
+    background: $color-orange;
+    color: $color-white;
+  }
+
+  @include bp(lg) {
+    color: $color-ink;
+
+    &:hover {
+      background: $color-orange-pale;
+      color: $color-orange-dark;
+    }
+
+    &.is-active {
+      background: $color-orange;
+      color: $color-white;
+    }
+  }
+}

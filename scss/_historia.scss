@@ -1,0 +1,226 @@
+// ===================================================
+// Historia — pages/institucion/historia.html
+// ===================================================
+
+.hist-zone {
+  border-radius: $radius-lg;
+  padding: $space-4;
+  margin-bottom: $space-4;
+  @include bp(md) { padding: $space-5; }
+
+  &--peach {
+    background: #2C2A27;
+    border-radius: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    padding-right: max(#{$space-4}, calc((100vw - #{$max-width}) / 2 + #{$space-4}));
+    @include bp(md) {
+      padding-left: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+      padding-right: max(#{$space-5}, calc((100vw - #{$max-width}) / 2 + #{$space-5}));
+    }
+  }
+}
+
+// --- Línea de tiempo: dos imágenes armadas, una corrida hacia
+// arriba para que el punteado de ambas quede a la misma altura. ---
+.hist-timeline {
+  display: flex;
+  align-items: flex-end;
+  overflow-x: auto;
+  margin-top: -45px;
+  margin-bottom: 28px;
+  padding-bottom: $space-2; // deja lugar por si aparece scrollbar
+}
+
+.hist-timeline__img {
+  height: 240px;
+  width: auto;
+  max-width: none;
+  flex-shrink: 0;
+
+  @include bp(md) { height: 300px; }
+}
+
+.hist-timeline__img--2 {
+  margin-bottom: 38px; // sube esta mitad para que el punteado coincida con la anterior
+}
+
+.hist-leer-mas {
+  text-align: center;
+  margin-bottom: $space-5;
+}
+
+// El .btn--ghost base es transparente con borde oscuro — se pierde
+// contra el fondo claro de esta sección hasta que le pasás el mouse.
+.hist-leer-mas-btn {
+  background: $color-white;
+  border-color: $color-orange;
+  color: $color-orange-dark;
+
+  &:hover {
+    background: $color-orange;
+    border-color: $color-orange;
+    color: $color-white;
+  }
+}
+
+.hist-divider {
+  border: none;
+  border-top: 1px dashed $color-line;
+  max-width: 400px;
+  margin: 0 auto $space-5;
+}
+
+// --- 3 mini-galerías con navegación ---
+.hist-gallery-set {
+  display: grid;
+  gap: $space-4;
+
+  @include bp(md) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.hist-gallery__label {
+  background: $color-line;
+  color: $color-ink;
+  font-family: $font-display;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  padding: 0.6rem 0.8rem;
+  border-radius: $radius-sm;
+  margin-bottom: $space-3;
+}
+
+.hist-gallery__frame {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+
+  .img-placeholder { aspect-ratio: 1; flex: 1; min-height: 0; }
+}
+
+.hist-gallery__nav {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: $color-white;
+  border: 1px solid $color-line;
+  display: grid;
+  place-items: center;
+  transition: background $transition-fast, border-color $transition-fast;
+
+  svg { width: 14px; height: 14px; color: $color-ink-soft; }
+
+  &:hover { background: $color-orange; border-color: $color-orange; svg { color: $color-white; } }
+}
+
+// --- Fundadora ---
+// Placa a todo el ancho de la pantalla, contenido centrado.
+.hist-founder {
+  background: $color-paper;
+  border-top: 3px solid $color-orange;
+  box-shadow: $shadow-card;
+  text-align: center;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-bottom: -$space-4; // achica el espacio que deja el padding de la section antes del footer
+  padding: $space-5 $space-4;
+}
+
+.hist-founder__name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: $color-ink;
+  margin-bottom: 0.7rem;
+}
+
+.hist-founder__role {
+  display: inline-block;
+  background: $color-orange-pale;
+  color: $color-orange-dark;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4rem 1.1rem;
+  border-radius: $radius-pill;
+}
+
+// --- Modal con el texto completo de "Leer más" ---
+.hist-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: $space-4;
+
+  &.is-open { display: flex; }
+}
+
+.hist-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(33, 29, 26, 0.6);
+}
+
+.hist-modal__panel {
+  position: relative;
+  background: $color-white;
+  border-radius: $radius-lg;
+  max-width: 720px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: $space-5;
+  box-shadow: $shadow-pop;
+}
+
+.hist-modal__close {
+  position: absolute;
+  top: $space-3;
+  right: $space-3;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $color-orange-pale;
+  border: none;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: background $transition-fast;
+
+  svg { width: 16px; height: 16px; color: $color-orange-dark; }
+
+  &:hover {
+    background: $color-orange;
+    svg { color: $color-white; }
+  }
+}
+
+.hist-modal__title {
+  font-size: 1.3rem;
+  margin-bottom: $space-3;
+  padding-right: $space-5;
+}
+
+.hist-modal__body p {
+  font-size: 0.92rem;
+  color: $color-ink-soft;
+  margin-bottom: 0.9rem;
+}
+
+// margin-top afecta cómo flex mide la altura de toda la fila, y eso
+// termina moviendo a la otra imagen también. position:relative con
+// top no participa del cálculo de layout, así que sólo mueve a esta,
+// sin superponerla ni cortar nada.
+.linea-der {
+  position: relative;
+      bottom: 33px;
+    right: 4px;
+}
