@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ispova-web.github.io/ispova-web/sitemap.xml
