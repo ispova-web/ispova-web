@@ -116,10 +116,44 @@
   // se pisaban con la fila de arriba, así que hace falta más aire entre filas.
   .inst-grid { row-gap: 7rem; }
 
-  // Los círculos de Misión/Valores/Visión flotan arriba de cada tarjeta.
+  // Misión / Valores / Visión: en celu pasan a ser un carrusel horizontal,
+  // una tarjeta grande a la vez, con barra para deslizar (en compu siguen
+  // siendo 3 columnas).
+  //
+  // Un contenedor con overflow-x recorta también hacia arriba, y los círculos
+  // de las tarjetas "flotan" ~135px por encima de ellas (margen negativo), así
+  // que el carrusel necesita ese colchón arriba en su propio padding.
   .value-grid {
-    margin-top: 6.5rem;
-    row-gap: 9rem;
+    --value-card-w: min(82vw, 340px);
+
+    display: flex;
+    align-items: stretch;
+    gap: $space-3;
+    margin-top: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    // El padding lateral deja a la primera y a la última tarjeta centradas.
+    padding: 145px calc((100% - var(--value-card-w)) / 2) $space-3;
+
+    // Barra siempre visible (sin scrollbar-width/color: en Chrome moderno
+    // esas propiedades anulan estos estilos y la barra se esconde en el celu).
+    &::-webkit-scrollbar { height: 12px; }
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: $radius-pill;
+      margin: 0 40px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $color-charcoal;
+      border-radius: $radius-pill;
+    }
+  }
+
+  .value-card {
+    flex: 0 0 var(--value-card-w);
+    scroll-snap-align: center;
   }
 
   .novedades {
@@ -138,10 +172,37 @@
 }
 
 @include below(559px) {
+  // Instituciones: 2 tarjetas arriba y 2 abajo, achicadas para que entren.
+  // El logo sigue "flotando" arriba de cada tarjeta, pero con menos saliente,
+  // así que también se achican el aire entre filas y el margen del título.
   .inst-grid {
-    grid-template-columns: 1fr;
-    max-width: 320px;
-    margin: 0 auto;
+    gap: $space-2;
+    row-gap: 4.6rem;
+  }
+
+  .inst-section .section-title { margin-bottom: 5.5rem; }
+
+  .inst-card {
+    padding: 0.7rem;
+
+    img {
+      width: 84px;
+      margin-top: -58px;
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 16px;
+      margin-bottom: 0.6rem;
+    }
+
+    .btn {
+      font-size: 0.75rem;
+      padding: 0.5rem 0.6rem;
+      white-space: normal;
+      text-align: center;
+      justify-content: center;
+    }
   }
 
   .hero-carousel { aspect-ratio: 4/3; }

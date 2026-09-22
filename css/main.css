@@ -4506,8 +4506,32 @@ section > .container > .insc-title:first-child {
     row-gap: 7rem;
   }
   .value-grid {
-    margin-top: 6.5rem;
-    row-gap: 9rem;
+    --value-card-w: min(82vw, 340px);
+    display: flex;
+    align-items: stretch;
+    gap: 1.2rem;
+    margin-top: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 145px calc((100% - var(--value-card-w)) / 2) 1.2rem;
+  }
+  .value-grid::-webkit-scrollbar {
+    height: 12px;
+  }
+  .value-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 999px;
+    margin: 0 40px;
+  }
+  .value-grid::-webkit-scrollbar-thumb {
+    background: #211D1A;
+    border-radius: 999px;
+  }
+  .value-card {
+    flex: 0 0 var(--value-card-w);
+    scroll-snap-align: center;
   }
   .novedades {
     flex-wrap: wrap;
@@ -4529,9 +4553,30 @@ section > .container > .insc-title:first-child {
 }
 @media (max-width: 559px) {
   .inst-grid {
-    grid-template-columns: 1fr;
-    max-width: 320px;
-    margin: 0 auto;
+    gap: 0.8rem;
+    row-gap: 4.6rem;
+  }
+  .inst-section .section-title {
+    margin-bottom: 5.5rem;
+  }
+  .inst-card {
+    padding: 0.7rem;
+  }
+  .inst-card img {
+    width: 84px;
+    margin-top: -58px;
+    margin-bottom: 0.5rem;
+  }
+  .inst-card h3 {
+    font-size: 16px;
+    margin-bottom: 0.6rem;
+  }
+  .inst-card .btn {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.6rem;
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
   }
   .hero-carousel {
     aspect-ratio: 4/3;
