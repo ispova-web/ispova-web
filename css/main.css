@@ -4705,259 +4705,228 @@ section > .container > .insc-title:first-child {
 }
 @media (max-width: 899px) {
   .ni-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.8rem 1.2rem;
-    text-align: left;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: center;
   }
   .ni-header br {
     display: none;
   }
-  .ni-header > div:last-child {
-    display: contents;
-  }
-  .ni-header__logo {
-    flex: 0 0 auto;
-    width: 92px;
-  }
   .ni-header__logo img {
     width: 100%;
-    max-width: none;
-    margin: 0;
+    max-width: 240px;
+    margin: 0 auto;
   }
   .ni-header__titulo {
-    flex: 1 1 160px;
-    margin: 0;
-    font-size: 22px;
-    line-height: 1.25;
-    text-align: left;
+    margin: 0 0 0.8rem;
+    font-size: 34px;
+    line-height: 1.2;
+    text-align: center;
   }
   .ni-header__title {
-    flex: 0 0 calc(100% - 92px - 1.2rem);
-    margin: 0.6rem 0 0 calc(92px + 1.2rem);
-    gap: 0.6rem;
-    justify-content: flex-start;
+    margin: 0 0 0.8rem;
+    gap: 0.8rem;
+    flex-wrap: wrap;
   }
   .ni-header__badge {
-    width: 56px;
-    height: 56px;
-    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
   }
   .ni-header__badge img {
-    width: 38px;
+    width: 64px;
   }
   .ni-header__subtitulo {
-    font-size: 20px;
-    padding: 3px 7px;
+    font-size: 34px;
   }
   .ni-schedule {
-    flex: 0 0 100%;
-    margin: 0.6rem 0 0;
     margin-left: 0;
-    text-align: left;
-    justify-content: flex-start;
   }
   .np-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.8rem 1.2rem;
-    text-align: left;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: center;
   }
   .np-header br {
     display: none;
   }
-  .np-header > div:last-child {
-    display: contents;
-  }
-  .np-header__logo {
-    flex: 0 0 auto;
-    width: 92px;
-  }
   .np-header__logo img {
     width: 100%;
-    max-width: none;
-    margin: 0;
+    max-width: 240px;
+    margin: 0 auto;
   }
   .np-header__titulo {
-    flex: 1 1 160px;
-    margin: 0;
-    font-size: 22px;
-    line-height: 1.25;
-    text-align: left;
+    margin: 0 0 0.8rem;
+    font-size: 34px;
+    line-height: 1.2;
+    text-align: center;
   }
   .np-header__title {
-    flex: 0 0 calc(100% - 92px - 1.2rem);
-    margin: 0.6rem 0 0 calc(92px + 1.2rem);
-    gap: 0.6rem;
-    justify-content: flex-start;
+    margin: 0 0 0.8rem;
+    gap: 0.8rem;
+    flex-wrap: wrap;
   }
   .np-header__badge {
-    width: 56px;
-    height: 56px;
-    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
   }
   .np-header__badge img {
-    width: 38px;
+    width: 64px;
   }
   .np-header__subtitulo {
-    font-size: 20px;
-    padding: 3px 7px;
+    font-size: 34px;
   }
   .np-schedule {
-    flex: 0 0 100%;
-    margin: 0.6rem 0 0;
     margin-left: 0;
-    text-align: left;
-    justify-content: flex-start;
   }
   .ns-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.8rem 1.2rem;
-    text-align: left;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: center;
   }
   .ns-header br {
     display: none;
   }
-  .ns-header > div:last-child {
-    display: contents;
-  }
-  .ns-header__logo {
-    flex: 0 0 auto;
-    width: 92px;
-  }
   .ns-header__logo img {
     width: 100%;
-    max-width: none;
-    margin: 0;
+    max-width: 240px;
+    margin: 0 auto;
   }
   .ns-header__titulo {
-    flex: 1 1 160px;
-    margin: 0;
-    font-size: 22px;
-    line-height: 1.25;
-    text-align: left;
+    margin: 0 0 0.8rem;
+    font-size: 34px;
+    line-height: 1.2;
+    text-align: center;
   }
   .ns-header__title {
-    flex: 0 0 calc(100% - 92px - 1.2rem);
-    margin: 0.6rem 0 0 calc(92px + 1.2rem);
-    gap: 0.6rem;
-    justify-content: flex-start;
+    margin: 0 0 0.8rem;
+    gap: 0.8rem;
+    flex-wrap: wrap;
   }
   .ns-header__badge {
-    width: 56px;
-    height: 56px;
-    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
   }
   .ns-header__badge img {
-    width: 38px;
+    width: 64px;
   }
   .ns-header__subtitulo {
-    font-size: 20px;
-    padding: 3px 7px;
+    font-size: 34px;
   }
   .ns-schedule {
-    flex: 0 0 100%;
-    margin: 0.6rem 0 0;
     margin-left: 0;
-    text-align: left;
-    justify-content: flex-start;
   }
   .me-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.8rem 1.2rem;
-    text-align: left;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: center;
   }
   .me-header br {
     display: none;
   }
-  .me-header > div:last-child {
-    display: contents;
-  }
-  .me-header__logo {
-    flex: 0 0 auto;
-    width: 92px;
-  }
   .me-header__logo img {
     width: 100%;
-    max-width: none;
-    margin: 0;
+    max-width: 240px;
+    margin: 0 auto;
   }
   .me-header__titulo {
-    flex: 1 1 160px;
-    margin: 0;
-    font-size: 22px;
-    line-height: 1.25;
-    text-align: left;
+    margin: 0 0 0.8rem;
+    font-size: 34px;
+    line-height: 1.2;
+    text-align: center;
   }
   .me-header__title {
-    flex: 0 0 calc(100% - 92px - 1.2rem);
-    margin: 0.6rem 0 0 calc(92px + 1.2rem);
-    gap: 0.6rem;
-    justify-content: flex-start;
+    margin: 0 0 0.8rem;
+    gap: 0.8rem;
+    flex-wrap: wrap;
   }
   .me-header__badge {
-    width: 56px;
-    height: 56px;
-    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
   }
   .me-header__badge img {
-    width: 38px;
+    width: 64px;
   }
   .me-header__subtitulo {
-    font-size: 20px;
-    padding: 3px 7px;
+    font-size: 34px;
   }
   .me-schedule {
-    flex: 0 0 100%;
-    margin: 0.6rem 0 0;
     margin-left: 0;
-    text-align: left;
-    justify-content: flex-start;
-  }
-  .np-schedule,
-  .ns-schedule,
-  .me-schedule {
-    text-align: center;
-    justify-content: center;
-  }
-  .ni-schedule__item {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-  .ni-schedule__sala {
-    font-size: 13px;
-    padding: 0.2rem 0.6rem;
-    white-space: nowrap;
   }
   .ni-header__logo img {
-    width: 159%;
-    max-width: none;
+    width: 89%;
+    max-width: 240px;
+    margin: 0 auto;
     margin-top: -40px;
-    margin-left: -6px;
   }
   .np-header__logo img {
-    width: 159%;
-    max-width: none;
+    width: 89%;
+    max-width: 240px;
+    margin: 0 auto;
     margin-top: -40px;
-    margin-left: -6px;
   }
   .ns-header__logo img {
-    width: 159%;
-    max-width: none;
+    width: 89%;
+    max-width: 240px;
+    margin: 0 auto;
     margin-top: -40px;
-    margin-left: -6px;
   }
   .me-header__logo img {
-    width: 159%;
-    max-width: none;
+    width: 89%;
+    max-width: 240px;
+    margin: 0 auto;
     margin-top: -40px;
-    margin-left: -6px;
+  }
+  .ni-schedule i {
+    font-size: 30px;
+  }
+  .ni-schedule__label {
+    font-size: 0.85rem;
+  }
+  .ni-schedule__value {
+    font-size: 1.3rem;
+  }
+  .ni-schedule__bar {
+    width: 36px;
+    height: 4px;
+  }
+  .np-schedule i {
+    font-size: 30px;
+  }
+  .np-schedule__label {
+    font-size: 0.85rem;
+  }
+  .np-schedule__value {
+    font-size: 1.3rem;
+  }
+  .np-schedule__bar {
+    width: 36px;
+    height: 4px;
+  }
+  .ns-schedule i {
+    font-size: 30px;
+  }
+  .ns-schedule__label {
+    font-size: 0.85rem;
+  }
+  .ns-schedule__value {
+    font-size: 1.3rem;
+  }
+  .ns-schedule__bar {
+    width: 36px;
+    height: 4px;
+  }
+  .me-schedule i {
+    font-size: 30px;
+  }
+  .me-schedule__label {
+    font-size: 0.85rem;
+  }
+  .me-schedule__value {
+    font-size: 1.3rem;
+  }
+  .me-schedule__bar {
+    width: 36px;
+    height: 4px;
   }
 }
 @media (max-width: 559px) {
@@ -4968,26 +4937,19 @@ section > .container > .insc-title:first-child {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
   }
-  .ni-header__logo {
-    width: 74px;
-  }
-  .ni-header__title {
-    flex-basis: calc(100% - 74px - 1.2rem);
-    margin-left: calc(74px + 1.2rem);
-  }
   .ni-header__titulo {
-    font-size: 19px;
+    font-size: 26px;
   }
   .ni-header__subtitulo {
-    font-size: 18px;
-    padding: 3px 6px;
+    font-size: 26px;
+    padding: 4px 8px;
   }
   .ni-header__badge {
-    width: 46px;
-    height: 46px;
+    width: 76px;
+    height: 76px;
   }
   .ni-header__badge img {
-    width: 31px;
+    width: 50px;
   }
   .ni-info-card h3 {
     font-size: 26px;
@@ -4999,26 +4961,19 @@ section > .container > .insc-title:first-child {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
   }
-  .np-header__logo {
-    width: 74px;
-  }
-  .np-header__title {
-    flex-basis: calc(100% - 74px - 1.2rem);
-    margin-left: calc(74px + 1.2rem);
-  }
   .np-header__titulo {
-    font-size: 19px;
+    font-size: 26px;
   }
   .np-header__subtitulo {
-    font-size: 18px;
-    padding: 3px 6px;
+    font-size: 26px;
+    padding: 4px 8px;
   }
   .np-header__badge {
-    width: 46px;
-    height: 46px;
+    width: 76px;
+    height: 76px;
   }
   .np-header__badge img {
-    width: 31px;
+    width: 50px;
   }
   .np-info-card h3 {
     font-size: 26px;
@@ -5030,26 +4985,19 @@ section > .container > .insc-title:first-child {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
   }
-  .ns-header__logo {
-    width: 74px;
-  }
-  .ns-header__title {
-    flex-basis: calc(100% - 74px - 1.2rem);
-    margin-left: calc(74px + 1.2rem);
-  }
   .ns-header__titulo {
-    font-size: 19px;
+    font-size: 26px;
   }
   .ns-header__subtitulo {
-    font-size: 18px;
-    padding: 3px 6px;
+    font-size: 26px;
+    padding: 4px 8px;
   }
   .ns-header__badge {
-    width: 46px;
-    height: 46px;
+    width: 76px;
+    height: 76px;
   }
   .ns-header__badge img {
-    width: 31px;
+    width: 50px;
   }
   .ns-info-card h3 {
     font-size: 26px;
@@ -5061,98 +5009,29 @@ section > .container > .insc-title:first-child {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
   }
-  .me-header__logo {
-    width: 74px;
-  }
-  .me-header__title {
-    flex-basis: calc(100% - 74px - 1.2rem);
-    margin-left: calc(74px + 1.2rem);
-  }
   .me-header__titulo {
-    font-size: 19px;
+    font-size: 26px;
   }
   .me-header__subtitulo {
-    font-size: 18px;
-    padding: 3px 6px;
+    font-size: 26px;
+    padding: 4px 8px;
   }
   .me-header__badge {
-    width: 46px;
-    height: 46px;
+    width: 76px;
+    height: 76px;
   }
   .me-header__badge img {
-    width: 31px;
+    width: 50px;
   }
   .me-info-card h3 {
     font-size: 26px;
-  }
-  .ni-header__titulo {
-    font-size: 22px;
-    margin-left: 44px;
-    margin-top: -137px;
-  }
-  .ni-header__title {
-    margin-top: -152px;
-    margin-left: 126px;
-  }
-  .np-header__titulo {
-    font-size: 22px;
-    margin-left: 44px;
-    margin-top: -137px;
-  }
-  .np-header__title {
-    margin-top: -152px;
-    margin-left: 126px;
-  }
-  .ns-header__titulo {
-    font-size: 22px;
-    margin-left: 44px;
-    margin-top: -137px;
-  }
-  .ns-header__title {
-    margin-top: -152px;
-    margin-left: 126px;
-  }
-  .me-header__titulo {
-    font-size: 22px;
-    margin-left: 44px;
-    margin-top: -137px;
-  }
-  .me-header__title {
-    margin-top: -152px;
-    margin-left: 126px;
-  }
-  .ns-header__titulo {
-    font-size: 22px;
-    margin-left: 44px;
-    margin-top: -99px;
-  }
-  .ns-header__title {
-    margin-top: -73px;
-    margin-left: 121px;
-  }
-  .me-header__titulo {
-    font-size: 22px;
-    margin-left: 44px;
-    margin-top: -65px;
-  }
-  .me-header__title {
-    margin-top: -27px;
-    margin-left: 107px;
-  }
-  .me-header__subtitulo {
-    font-size: 16px;
-    padding: 3px 6px;
-  }
-  .ni-schedule__sala {
-    font-size: 12px;
-    padding: 0.18rem 0.5rem;
   }
   .ni-pill,
   .np-pill {
     font-size: 17px;
   }
   .ni-schedule {
-    gap: 0.8rem;
+    gap: 1.2rem;
   }
 }
 @media (max-width: 899px) {
@@ -5693,93 +5572,29 @@ section > .container > .insc-title:first-child {
   .stat__label {
     font-size: 0.72rem;
   }
-  .ni-header__logo {
-    width: 62px;
-  }
-  .ni-header__title {
-    flex-basis: calc(100% - 62px - 1.2rem);
-    margin-left: calc(62px + 1.2rem);
-  }
   .ni-header__titulo {
-    font-size: 17px;
+    font-size: 23px;
   }
   .ni-header__subtitulo {
-    font-size: 16px;
-    padding: 2px 5px;
-  }
-  .ni-header__badge {
-    width: 40px;
-    height: 40px;
-  }
-  .ni-header__badge img {
-    width: 27px;
-  }
-  .np-header__logo {
-    width: 62px;
-  }
-  .np-header__title {
-    flex-basis: calc(100% - 62px - 1.2rem);
-    margin-left: calc(62px + 1.2rem);
+    font-size: 23px;
   }
   .np-header__titulo {
-    font-size: 17px;
+    font-size: 23px;
   }
   .np-header__subtitulo {
-    font-size: 16px;
-    padding: 2px 5px;
-  }
-  .np-header__badge {
-    width: 40px;
-    height: 40px;
-  }
-  .np-header__badge img {
-    width: 27px;
-  }
-  .ns-header__logo {
-    width: 62px;
-  }
-  .ns-header__title {
-    flex-basis: calc(100% - 62px - 1.2rem);
-    margin-left: calc(62px + 1.2rem);
+    font-size: 23px;
   }
   .ns-header__titulo {
-    font-size: 17px;
+    font-size: 23px;
   }
   .ns-header__subtitulo {
-    font-size: 16px;
-    padding: 2px 5px;
-  }
-  .ns-header__badge {
-    width: 40px;
-    height: 40px;
-  }
-  .ns-header__badge img {
-    width: 27px;
-  }
-  .me-header__logo {
-    width: 62px;
-  }
-  .me-header__title {
-    flex-basis: calc(100% - 62px - 1.2rem);
-    margin-left: calc(62px + 1.2rem);
+    font-size: 23px;
   }
   .me-header__titulo {
-    font-size: 17px;
+    font-size: 23px;
   }
   .me-header__subtitulo {
-    font-size: 16px;
-    padding: 2px 5px;
-  }
-  .me-header__badge {
-    width: 40px;
-    height: 40px;
-  }
-  .me-header__badge img {
-    width: 27px;
-  }
-  .ni-schedule__sala {
-    font-size: 11px;
-    padding: 0.15rem 0.4rem;
+    font-size: 23px;
   }
 }
 

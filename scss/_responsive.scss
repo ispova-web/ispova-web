@@ -286,123 +286,76 @@
 // ===================================================
 // PROPUESTA EDUCATIVA — encabezado de cada nivel
 // (Inicial, Primario, Secundario, Modalidad Especial)
-// Fila de arriba: logo a la izquierda, nombre del instituto a la
-// derecha. Debajo, ocupando todo el ancho: el círculo con "Nivel X"
-// y los turnos. Se anulan los márgenes negativos que en compu
-// acomodan el logo y el título (pensados para el tamaño de escritorio).
+// Se apila en vertical y se anulan los márgenes negativos que
+// acomodan el logo y el título en la versión de compu.
 // ===================================================
 @include below(899px) {
   @each $p in ni, np, ns, me {
-    // Ancho del logo en esta escala — se reusa para correr el círculo
-    // "Nivel X" justo debajo del nombre (no desde el borde izquierdo).
-    $logo-w: 92px;
-
     .#{$p}-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: $space-2 $space-3;
-      text-align: left;
+      flex-direction: column;
+      gap: $space-3;
+      text-align: center;
 
       br { display: none; }
     }
 
-    // En el HTML, el nombre + "Nivel X" + turnos están agrupados en un
-    // mismo <div> (así lo pide el layout de compu). "display: contents"
-    // hace que ESE div deje de existir como caja — sin tocar el HTML —
-    // y sus hijos pasan a acomodarse como si fueran hijos directos del
-    // header, así el nombre puede ir al lado del logo y lo demás abajo,
-    // a todo el ancho.
-    .#{$p}-header > div:last-child {
-      display: contents;
-    }
-
-    .#{$p}-header__logo {
-      flex: 0 0 auto;
-      width: $logo-w;
-    }
-
     .#{$p}-header__logo img {
       width: 100%;
-      max-width: none;
-      margin: 0;
+      max-width: 240px;
+      margin: 0 auto;
     }
 
     .#{$p}-header__titulo {
-      flex: 1 1 160px;
-      margin: 0;
-      font-size: 22px;
-      line-height: 1.25;
-      text-align: left;
+      margin: 0 0 $space-2;
+      font-size: 34px;
+      line-height: 1.2;
+      text-align: center;
     }
 
-    // Va debajo del nombre, no desde el borde izquierdo: mismo corrimiento
-    // que el ancho del logo, para quedar alineado con el título de arriba.
     .#{$p}-header__title {
-      flex: 0 0 calc(100% - #{$logo-w} - #{$space-3});
-      margin: 0.6rem 0 0 calc(#{$logo-w} + #{$space-3});
-      gap: 0.6rem;
-      justify-content: flex-start;
+      margin: 0 0 $space-2;
+      gap: 0.8rem;
+      flex-wrap: wrap;
     }
 
     .#{$p}-header__badge {
-      width: 56px;
-      height: 56px;
-      flex-shrink: 0;
-      img { width: 38px; }
+      width: 96px;
+      height: 96px;
+      img { width: 64px; }
     }
 
-    .#{$p}-header__subtitulo { font-size: 20px; padding: 3px 7px; }
+    .#{$p}-header__subtitulo { font-size: 34px; }
 
-    .#{$p}-schedule {
-      flex: 0 0 100%;
-      margin: 0.6rem 0 0;
-      margin-left: 0;
-      text-align: left;
-      justify-content: flex-start;
-    }
+    .#{$p}-schedule { margin-left: 0; }
   }
 
-  // Primario, Secundario y Especial tienen un solo turno (a diferencia
-  // de Inicial, que tiene Mañana y Tarde uno al lado del otro) — ese
-  // turno va centrado en todo el ancho, no pegado a la izquierda.
-  .np-schedule,
-  .ns-schedule,
-  .me-schedule {
-    text-align: center;
-    justify-content: center;
-  }
-
-  // Nivel Inicial tiene dos turnos (Mañana/Tarde) uno al lado del otro,
-  // cada uno con su píldora "Sala de X años". Con flex:1 quedan los
-  // dos del mismo ancho (simétricos entre sí).
-  .ni-schedule__item {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-
-  .ni-schedule__sala {
-    font-size: 13px;
-    padding: 0.2rem 0.6rem;
-    white-space: nowrap;
-  }
-
-  // Ajuste puntual del logo (crece más que el resto del recuadro y se
-  // corre un poco para acomodarlo) — mismo ajuste en los 4 niveles.
+  // Ajuste puntual del logo — mismo ajuste en los 4 niveles.
   @each $p in ni, np, ns, me {
     .#{$p}-header__logo img {
-      width: 159%;
-      max-width: none;
+      width: 89%;
+      max-width: 240px;
+      margin: 0 auto;
       margin-top: -40px;
-      margin-left: -6px;
+    }
+  }
+
+  // El turno quedaba chico al lado del título agrandado — un poco más
+  // grande, en los 4 niveles (en Inicial afecta a cada uno de los dos
+  // turnos, Mañana y Tarde).
+  @each $p in ni, np, ns, me {
+    .#{$p}-schedule i { font-size: 30px; }
+    .#{$p}-schedule__label { font-size: 0.85rem; }
+    .#{$p}-schedule__value { font-size: 1.3rem; }
+
+    .#{$p}-schedule__bar {
+      width: 36px;
+      height: 4px;
     }
   }
 }
 
 @include below(559px) {
   @each $p in ni, np, ns, me {
-    $logo-w: 74px;
-
     .#{$p}-zone { padding: $space-3; }
 
     .#{$p}-zone--peach {
@@ -410,81 +363,22 @@
       padding-right: $space-3;
     }
 
-    .#{$p}-header__logo { width: $logo-w; }
-
-    .#{$p}-header__title {
-      flex-basis: calc(100% - #{$logo-w} - #{$space-3});
-      margin-left: calc(#{$logo-w} + #{$space-3});
-    }
-
-    .#{$p}-header__titulo { font-size: 19px; }
-    .#{$p}-header__subtitulo { font-size: 18px; padding: 3px 6px; }
+    .#{$p}-header__titulo { font-size: 26px; }
+    .#{$p}-header__subtitulo { font-size: 26px; padding: 4px 8px; }
 
     .#{$p}-header__badge {
-      width: 46px;
-      height: 46px;
-      img { width: 31px; }
+      width: 76px;
+      height: 76px;
+      img { width: 50px; }
     }
 
     .#{$p}-info-card h3 { font-size: 26px; }
   }
 
-  // Ajuste puntual del título, para que acompañe al logo agrandado de
-  // arriba — mismo ajuste en los 4 niveles.
-  @each $p in ni, np, ns, me {
-    .#{$p}-header__titulo {
-      font-size: 22px;
-      margin-left: 44px;
-      margin-top: -137px;
-    }
-
-    // La fila "Nivel X" (círculo + texto) queda pegada justo debajo del
-    // título, no debajo de todo el logo.
-    .#{$p}-header__title {
-      margin-top: -152px;
-      margin-left: 126px;
-    }
-  }
-
-  // Nivel Secundario: logo y nombre más largo que Eva Franco, necesita
-  // su propio ajuste en vez del compartido de arriba.
-  .ns-header__titulo {
-    font-size: 22px;
-    margin-left: 44px;
-    margin-top: -99px;
-  }
-
-  .ns-header__title {
-    margin-top: -73px;
-    margin-left: 121px;
-  }
-
-  // Modalidad Especial: logo y nombre más largo, su propio ajuste.
-  .me-header__titulo {
-    font-size: 22px;
-    margin-left: 44px;
-    margin-top: -65px;
-  }
-
-  .me-header__title {
-    margin-top: -27px;
-    margin-left: 107px;
-  }
-
-  .me-header__subtitulo {
-    font-size: 16px;
-    padding: 3px 6px;
-  }
-
-  .ni-schedule__sala {
-    font-size: 12px;
-    padding: 0.18rem 0.5rem;
-  }
-
   .ni-pill,
   .np-pill { font-size: 17px; }
 
-  .ni-schedule { gap: $space-2; }
+  .ni-schedule { gap: $space-3; }
 }
 
 // La grilla rígida (3 columnas fijas en compu) hacía que, al forzarla a
@@ -874,24 +768,7 @@
   .stat__label { font-size: 0.72rem; }
 
   @each $p in ni, np, ns, me {
-    $logo-w: 62px;
-
-    .#{$p}-header__logo { width: $logo-w; }
-
-    .#{$p}-header__title {
-      flex-basis: calc(100% - #{$logo-w} - #{$space-3});
-      margin-left: calc(#{$logo-w} + #{$space-3});
-    }
-
-    .#{$p}-header__titulo { font-size: 17px; }
-    .#{$p}-header__subtitulo { font-size: 16px; padding: 2px 5px; }
-
-    .#{$p}-header__badge {
-      width: 40px;
-      height: 40px;
-      img { width: 27px; }
-    }
+    .#{$p}-header__titulo { font-size: 23px; }
+    .#{$p}-header__subtitulo { font-size: 23px; }
   }
-
-  .ni-schedule__sala { font-size: 11px; padding: 0.15rem 0.4rem; }
 }
