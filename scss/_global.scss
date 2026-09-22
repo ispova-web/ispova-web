@@ -248,11 +248,41 @@ textarea:focus-visible {
   }
 }
 
+// --- Barra de progreso para carruseles horizontales ------
+// El scrollbar nativo del navegador no se ve confiable en celu (en iOS
+// Safari directamente no se puede estilar y se auto-oculta). Esta barra
+// se dibuja con JS (initScrollProgress, en main.js) en base al scroll
+// real del contenedor, así que se ve siempre, en cualquier navegador.
+// Por defecto está oculta: cada página la muestra sólo donde la necesita
+// (ver _responsive.scss).
+.scroll-progress {
+  display: none;
+  position: relative;
+  height: 8px;
+  border-radius: $radius-pill;
+  background: $color-line;
+  margin: $space-2 auto 0;
+  overflow: hidden;
+}
+
+.scroll-progress__thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: $radius-pill;
+  background: $color-orange;
+}
+
 // --- Placeholder de foto (hasta que suban la real) -------
 .img-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem;
   background: repeating-linear-gradient(135deg, $color-orange-pale, $color-orange-pale 10px, $color-white 10px, $color-white 20px);
   border: 1px dashed $color-orange;
   border-radius: $radius-md;
@@ -260,5 +290,6 @@ textarea:focus-visible {
   font-size: 0.8rem;
   font-weight: 600;
   text-align: center;
+  overflow-wrap: break-word;
   min-height: 160px;
 }

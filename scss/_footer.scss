@@ -30,6 +30,10 @@
     color: $color-charcoal;
     font-weight: 700;
     font-size: 0.9rem;
+
+    // El salto de línea es sólo para celu (ver _responsive.scss): en
+    // compu el texto entra bien en un solo renglón.
+    br { display: none; }
   }
 }
 

@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMvvCarousel();
   initEdFilter();
   initModal();
+  initScrollProgress();
 });
 
 /* ---------- Navegación (mobile + dropdown) ---------- */
@@ -372,5 +373,33 @@ function initBackToTop() {
 
   btn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+/* ---------- Barra de progreso de carruseles horizontales ----------
+   El scrollbar nativo del navegador no se ve confiable en celu (en iOS
+   directamente no se puede estilar y se auto-oculta), así que esta barra
+   se dibuja a mano con un div y se mueve según el scroll real. Cada
+   .scroll-progress apunta, con data-scroll-for, al id del contenedor
+   que scrollea. ---------- */
+function initScrollProgress() {
+  document.querySelectorAll('.scroll-progress[data-scroll-for]').forEach(bar => {
+    const container = document.getElementById(bar.dataset.scrollFor);
+    const thumb = bar.querySelector('.scroll-progress__thumb');
+    if (!container || !thumb) return;
+
+    function update() {
+      const max = container.scrollWidth - container.clientWidth;
+      const thumbRatio = max > 0 ? Math.min(container.clientWidth / container.scrollWidth, 1) : 1;
+      const widthPct = Math.max(thumbRatio * 100, 15);
+      const progress = max > 0 ? container.scrollLeft / max : 0;
+
+      thumb.style.width = widthPct + '%';
+      thumb.style.left = progress * (100 - widthPct) + '%';
+    }
+
+    container.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
   });
 }

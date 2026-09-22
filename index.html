@@ -24,7 +24,7 @@
   <nav class="nav">
     <a href="index.html" class="nav__brand">
       <img src="https://res.cloudinary.com/dhxbif0h1/image/upload/v1784915733/ispova/logoHeader-fondo-blanco_vmqukw.png" alt="Logo ISPOVA">
-      <span>I.S.P.O.V.A.</span>
+      <span>I.S.P.O.V.A.</span><span class="nav__brand-page">| Inicio</span>
     </a>
 
     <button class="nav__toggle" aria-label="Abrir menú" aria-expanded="false">
@@ -113,22 +113,22 @@
     <div class="container">
       <div class="stat-bar-wrap reveal">
         <div class="stat-bar">
-          <div class="stat">
+          <div class="stat reveal">
             <span class="stat__icon"><img class="imgStat" src="https://res.cloudinary.com/dhxbif0h1/image/upload/v1784918056/ispova/WhatsApp_Image_2026-07-24_at_15.33.41_rd2c04.jpg" alt="calendario"></span>
             <span class="stat__number">59</span>
             <span class="stat__label">años de trayectoria — Desde 1967</span>
           </div>
-          <div class="stat">
+          <div class="stat reveal">
             <span class="stat__icon"><img class="imgStat" src="https://res.cloudinary.com/dhxbif0h1/image/upload/v1784918056/ispova/WhatsApp_Image_2026-07-24_at_15.33.42_fn1jv9.jpg" alt="mochila"></span>
             <span class="stat__number">+400</span>
             <span class="stat__label">alumnos actualmente</span>
           </div>
-          <div class="stat">
+          <div class="stat reveal">
             <span class="stat__icon"><img class="imgStat" src="https://res.cloudinary.com/dhxbif0h1/image/upload/v1784918055/ispova/WhatsApp_Image_2026-07-24_at_15.33.42_1_jzjnxr.jpg" alt="gorroEgreso"></span>
             <span class="stat__number">+2.000</span>
             <span class="stat__label">egresados</span>
           </div>
-          <div class="stat statUltimo">
+          <div class="stat statUltimo reveal">
             <span class="stat__icon"><img class="imgStat" src="https://res.cloudinary.com/dhxbif0h1/image/upload/v1784918056/ispova/WhatsApp_Image_2026-07-24_at_15.33.42_2_byrifa.jpg" alt="personas"></span>
             <span class="stat__number">60</span>
             <span class="stat__label">docentes</span>
@@ -234,7 +234,7 @@
 <section class="mission-section">
   <div class="container reveal">
 
-    <div class="value-grid">
+    <div class="value-grid" id="valueGrid">
       <div class="value-card">
         <span class="value-card__icon">
           <img src="https://res.cloudinary.com/dhxbif0h1/image/upload/v1786496354/ispova/icon-icons_17_f37omw.png" alt="icono-mision">
@@ -255,6 +255,7 @@
         <p>Nos proyectamos como una escuela que trabaja coordinadamente en equipo, anticipando el futuro en nuestras prácticas para ser elegidos por la calidad de nuestros docentes.</p>
       </div>
     </div>
+    <div class="scroll-progress" data-scroll-for="valueGrid" aria-hidden="true"><span class="scroll-progress__thumb"></span></div>
   </div>
 </section>
 
@@ -262,7 +263,7 @@
 <footer class="site-footer">
   <div class="footer-cta">
     <div class="container footer-cta__inner">
-      <span>¿Tenés dudas? Escribinos y te respondemos a la brevedad.</span>
+      <span>¿Tenés dudas?<br>Escribinos y te respondemos a la brevedad.</span>
       <a href="https://wa.me/5493515583744" target="_blank" rel="noopener" class="footer-cta__btn">Mandar WhatsApp</a>
     </div>
   </div>

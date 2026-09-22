@@ -47,6 +47,12 @@
   }
 }
 
+// Nombre de la página actual, al lado de "I.S.P.O.V.A." — sólo en
+// mobile (ver _responsive.scss), en compu no hace falta.
+.nav__brand-page {
+  display: none;
+}
+
 .nav__toggle {
   display: flex;
   flex-direction: column;

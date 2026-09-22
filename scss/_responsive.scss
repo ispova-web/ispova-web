@@ -28,9 +28,24 @@
 @include below(1099px) {
   .nav__toggle span { background: $color-charcoal; }
 
+  // Al lado de "I.S.P.O.V.A." se agrega el nombre de la página actual
+  // (ver .nav__brand-page, sólo visible en mobile — se define/revela
+  // más abajo, junto con el resto de los ajustes de header en mobile).
+  .nav__brand-page {
+    display: inline;
+    color: $color-ink-soft;
+    font-weight: 500;
+    font-size: 0.85rem;
+    margin-left: 0.4rem;
+    white-space: nowrap;
+  }
+
   .nav__menu {
     max-height: calc(100vh - 84px);
     overflow-y: auto;
+    // Separa las cajas de cada ítem (Inicio, Propuesta Educativa...),
+    // que antes quedaban pegadas una con otra.
+    gap: $space-1;
   }
 
   .nav__link {
@@ -86,11 +101,17 @@
 // FOOTER  (≤ 559px)
 // ===================================================
 @include below(559px) {
+  // El botón quedaba pegado al footer oscuro de abajo — más aire debajo.
   .footer-cta__inner {
     flex-direction: column;
     text-align: center;
-    gap: $space-2;
+    gap: $space-3;
+    padding-bottom: $space-2;
   }
+
+  .footer-cta__btn { margin-bottom: 0.2rem; }
+
+  .footer-cta__inner span br { display: inline; }
 
   .footer__logos {
     gap: $space-2;
@@ -98,7 +119,37 @@
     img { width: 100px; }
   }
 
-  .footer__info { font-size: 0.86rem; }
+  // Antes cada línea (mail, dirección, teléfono...) se centraba como
+  // bloque suelto, y como cada una mide distinto los íconos quedaban
+  // a alturas distintas — se veía desordenado. Ahora es una tarjeta con
+  // filas alineadas a la izquierda y separadores, como una lista.
+  .footer__info {
+    align-items: stretch;
+    gap: 0;
+    max-width: 320px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: $radius-md;
+    overflow: hidden;
+    font-size: 0.86rem;
+  }
+
+  .footer__info a,
+  .footer__info span {
+    justify-content: flex-start;
+    gap: $space-2;
+    padding: 0.8rem $space-3;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: left;
+  }
+
+  .footer__info > *:last-child { border-bottom: none; }
+
+  .footer__info svg {
+    width: 17px;
+    height: 17px;
+  }
 
   .back-to-top {
     right: $space-3;
@@ -112,6 +163,13 @@
 // INICIO
 // ===================================================
 @include below(799px) {
+  // La caja de datos (59 años / +400 alumnos...) se sube -28px para
+  // meterse justo en el corte en V de arriba. En celu el corte es más
+  // bajo y termina tapando el borde naranja de arriba de la caja
+  // (sólo se veía un piquito, donde el V llega más abajo). Sin ese
+  // solapamiento, el borde de arriba se ve completo.
+  .hero__band--datos { margin-top: 0; }
+
   // Las imágenes de las tarjetas "flotan" 85px hacia arriba: en 2 filas
   // se pisaban con la fila de arriba, así que hace falta más aire entre filas.
   .inst-grid { row-gap: 7rem; }
@@ -135,25 +193,24 @@
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     // El padding lateral deja a la primera y a la última tarjeta centradas.
-    padding: 145px calc((100% - var(--value-card-w)) / 2) $space-3;
-
-    // Barra siempre visible (sin scrollbar-width/color: en Chrome moderno
-    // esas propiedades anulan estos estilos y la barra se esconde en el celu).
-    &::-webkit-scrollbar { height: 12px; }
-    &::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: $radius-pill;
-      margin: 0 40px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: $color-charcoal;
-      border-radius: $radius-pill;
-    }
+    // Sin scrollbar propia (el navegador la esconde en celu): la barra
+    // de abajo (.scroll-progress) es la que se ve siempre.
+    padding: 145px calc((100% - var(--value-card-w)) / 2) 0;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
   }
 
   .value-card {
     flex: 0 0 var(--value-card-w);
     scroll-snap-align: center;
+  }
+
+  // --value-card-w vive en .value-grid, que no lo hereda su hermano de
+  // acá abajo — se repite el mismo valor para que la barra quede del
+  // ancho de una tarjeta.
+  #valueGrid + .scroll-progress {
+    display: block;
+    max-width: min(82vw, 340px);
   }
 
   .novedades {
@@ -229,52 +286,123 @@
 // ===================================================
 // PROPUESTA EDUCATIVA — encabezado de cada nivel
 // (Inicial, Primario, Secundario, Modalidad Especial)
-// Se apila en vertical y se anulan los márgenes negativos que
-// acomodan el logo y el título en la versión de compu.
+// Fila de arriba: logo a la izquierda, nombre del instituto a la
+// derecha. Debajo, ocupando todo el ancho: el círculo con "Nivel X"
+// y los turnos. Se anulan los márgenes negativos que en compu
+// acomodan el logo y el título (pensados para el tamaño de escritorio).
 // ===================================================
 @include below(899px) {
   @each $p in ni, np, ns, me {
+    // Ancho del logo en esta escala — se reusa para correr el círculo
+    // "Nivel X" justo debajo del nombre (no desde el borde izquierdo).
+    $logo-w: 92px;
+
     .#{$p}-header {
-      flex-direction: column;
-      gap: $space-3;
-      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: $space-2 $space-3;
+      text-align: left;
 
       br { display: none; }
     }
 
+    // En el HTML, el nombre + "Nivel X" + turnos están agrupados en un
+    // mismo <div> (así lo pide el layout de compu). "display: contents"
+    // hace que ESE div deje de existir como caja — sin tocar el HTML —
+    // y sus hijos pasan a acomodarse como si fueran hijos directos del
+    // header, así el nombre puede ir al lado del logo y lo demás abajo,
+    // a todo el ancho.
+    .#{$p}-header > div:last-child {
+      display: contents;
+    }
+
+    .#{$p}-header__logo {
+      flex: 0 0 auto;
+      width: $logo-w;
+    }
+
     .#{$p}-header__logo img {
       width: 100%;
-      max-width: 240px;
-      margin: 0 auto;
+      max-width: none;
+      margin: 0;
     }
 
     .#{$p}-header__titulo {
-      margin: 0 0 $space-2;
-      font-size: 34px;
-      line-height: 1.2;
-      text-align: center;
+      flex: 1 1 160px;
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.25;
+      text-align: left;
     }
 
+    // Va debajo del nombre, no desde el borde izquierdo: mismo corrimiento
+    // que el ancho del logo, para quedar alineado con el título de arriba.
     .#{$p}-header__title {
-      margin: 0 0 $space-2;
-      gap: 0.8rem;
-      flex-wrap: wrap;
+      flex: 0 0 calc(100% - #{$logo-w} - #{$space-3});
+      margin: 0.6rem 0 0 calc(#{$logo-w} + #{$space-3});
+      gap: 0.6rem;
+      justify-content: flex-start;
     }
 
     .#{$p}-header__badge {
-      width: 96px;
-      height: 96px;
-      img { width: 64px; }
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+      img { width: 38px; }
     }
 
-    .#{$p}-header__subtitulo { font-size: 34px; }
+    .#{$p}-header__subtitulo { font-size: 20px; padding: 3px 7px; }
 
-    .#{$p}-schedule { margin-left: 0; }
+    .#{$p}-schedule {
+      flex: 0 0 100%;
+      margin: 0.6rem 0 0;
+      margin-left: 0;
+      text-align: left;
+      justify-content: flex-start;
+    }
+  }
+
+  // Primario, Secundario y Especial tienen un solo turno (a diferencia
+  // de Inicial, que tiene Mañana y Tarde uno al lado del otro) — ese
+  // turno va centrado en todo el ancho, no pegado a la izquierda.
+  .np-schedule,
+  .ns-schedule,
+  .me-schedule {
+    text-align: center;
+    justify-content: center;
+  }
+
+  // Nivel Inicial tiene dos turnos (Mañana/Tarde) uno al lado del otro,
+  // cada uno con su píldora "Sala de X años". Con flex:1 quedan los
+  // dos del mismo ancho (simétricos entre sí).
+  .ni-schedule__item {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .ni-schedule__sala {
+    font-size: 13px;
+    padding: 0.2rem 0.6rem;
+    white-space: nowrap;
+  }
+
+  // Ajuste puntual del logo (crece más que el resto del recuadro y se
+  // corre un poco para acomodarlo) — mismo ajuste en los 4 niveles.
+  @each $p in ni, np, ns, me {
+    .#{$p}-header__logo img {
+      width: 159%;
+      max-width: none;
+      margin-top: -40px;
+      margin-left: -6px;
+    }
   }
 }
 
 @include below(559px) {
   @each $p in ni, np, ns, me {
+    $logo-w: 74px;
+
     .#{$p}-zone { padding: $space-3; }
 
     .#{$p}-zone--peach {
@@ -282,28 +410,108 @@
       padding-right: $space-3;
     }
 
-    .#{$p}-header__titulo { font-size: 26px; }
-    .#{$p}-header__subtitulo { font-size: 26px; padding: 4px 8px; }
+    .#{$p}-header__logo { width: $logo-w; }
+
+    .#{$p}-header__title {
+      flex-basis: calc(100% - #{$logo-w} - #{$space-3});
+      margin-left: calc(#{$logo-w} + #{$space-3});
+    }
+
+    .#{$p}-header__titulo { font-size: 19px; }
+    .#{$p}-header__subtitulo { font-size: 18px; padding: 3px 6px; }
 
     .#{$p}-header__badge {
-      width: 76px;
-      height: 76px;
-      img { width: 50px; }
+      width: 46px;
+      height: 46px;
+      img { width: 31px; }
     }
 
     .#{$p}-info-card h3 { font-size: 26px; }
   }
 
+  // Ajuste puntual del título, para que acompañe al logo agrandado de
+  // arriba — mismo ajuste en los 4 niveles.
+  @each $p in ni, np, ns, me {
+    .#{$p}-header__titulo {
+      font-size: 22px;
+      margin-left: 44px;
+      margin-top: -137px;
+    }
+
+    // La fila "Nivel X" (círculo + texto) queda pegada justo debajo del
+    // título, no debajo de todo el logo.
+    .#{$p}-header__title {
+      margin-top: -152px;
+      margin-left: 126px;
+    }
+  }
+
+  // Nivel Secundario: logo y nombre más largo que Eva Franco, necesita
+  // su propio ajuste en vez del compartido de arriba.
+  .ns-header__titulo {
+    font-size: 22px;
+    margin-left: 44px;
+    margin-top: -99px;
+  }
+
+  .ns-header__title {
+    margin-top: -73px;
+    margin-left: 121px;
+  }
+
+  // Modalidad Especial: logo y nombre más largo, su propio ajuste.
+  .me-header__titulo {
+    font-size: 22px;
+    margin-left: 44px;
+    margin-top: -65px;
+  }
+
+  .me-header__title {
+    margin-top: -27px;
+    margin-left: 107px;
+  }
+
+  .me-header__subtitulo {
+    font-size: 16px;
+    padding: 3px 6px;
+  }
+
+  .ni-schedule__sala {
+    font-size: 12px;
+    padding: 0.18rem 0.5rem;
+  }
+
   .ni-pill,
   .np-pill { font-size: 17px; }
 
-  .np-values-row--pair { grid-template-columns: 1fr; }
-
-  .ni-schedule { gap: $space-3; }
+  .ni-schedule { gap: $space-2; }
 }
 
+// La grilla rígida (3 columnas fijas en compu) hacía que, al forzarla a
+// 1 columna, cada pill se estirara a todo el ancho. En vez de eso, que
+// fluya como una lista de píldoras: cada una ocupa lo que necesita y
+// van acomodándose de a 2 (o las que entren) por fila.
 @include below(899px) {
-  .np-values-row--pair { grid-template-columns: 1fr; }
+  .np-values-row--pair {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+// Misión/Valores/Visión de Nivel Secundario: el scrollbar nativo del
+// carrusel (estilado en _nivel-secundario.scss) no se ve en celu — se
+// oculta y se muestra la barra propia de abajo en su lugar.
+@include below(799px) {
+  .ns-mvv-scroll {
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  #nsMvvScroll + .scroll-progress {
+    display: block;
+    max-width: 300px;
+  }
 }
 
 // Trámites (círculo + cartel con el nombre). El cartel tenía ancho fijo
@@ -322,15 +530,40 @@
   .me-tramite__label { max-width: 410px; }
 }
 
-@include below(559px) {
+// En celu, dos trámites por fila en vez de uno solo debajo del otro.
+@include below(799px) {
   @each $p in ni, np, ns, me {
-    .#{$p}-tramite__icon {
-      width: 160px;
-      height: 156px;
-      img { width: 100px; }
+    .#{$p}-tramite-row {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $space-3;
     }
 
-    .#{$p}-tramite__label { font-size: 16px; }
+    .#{$p}-tramite__icon {
+      width: 120px;
+      height: 116px;
+      img { width: 76px; }
+    }
+
+    .#{$p}-tramite__label {
+      width: 100%;
+      max-width: none;
+      font-size: 15px;
+      padding: 0.4rem 0.6rem;
+    }
+  }
+}
+
+@include below(559px) {
+  @each $p in ni, np, ns, me {
+    .#{$p}-tramite-row { gap: $space-2; }
+
+    .#{$p}-tramite__icon {
+      width: 100px;
+      height: 97px;
+      img { width: 64px; }
+    }
+
+    .#{$p}-tramite__label { font-size: 13px; padding: 0.35rem 0.5rem; }
   }
 }
 
@@ -609,6 +842,28 @@
   }
 }
 
+// Video de la cita de Nivel Inicial: el max-width fijo (313px) lo
+// dejaba angosto en celu, con bandas vacías a los costados. Además,
+// .ni-cita centra sus 2 columnas (align-items:center), así que el
+// contenedor del video se achicaba a su propio contenido en vez de
+// ocupar todo el ancho — "align-self:stretch" hace que sí lo ocupe.
+// Se le resta el padding de la caja de la cita (y se le deja uno chico
+// propio) para que quede bien pegado a los bordes; la cita en sí y el
+// texto de la izquierda no se tocan.
+@include below(768px) {
+  .ni-cita__video {
+    align-self: stretch;
+    margin-left: -24px;
+    margin-right: -24px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .ni-cita__video video {
+    max-width: 100%;
+  }
+}
+
 // ===================================================
 // CELUS CHICOS  (≤ 380px)
 // ===================================================
@@ -619,7 +874,24 @@
   .stat__label { font-size: 0.72rem; }
 
   @each $p in ni, np, ns, me {
-    .#{$p}-header__titulo { font-size: 23px; }
-    .#{$p}-header__subtitulo { font-size: 23px; }
+    $logo-w: 62px;
+
+    .#{$p}-header__logo { width: $logo-w; }
+
+    .#{$p}-header__title {
+      flex-basis: calc(100% - #{$logo-w} - #{$space-3});
+      margin-left: calc(#{$logo-w} + #{$space-3});
+    }
+
+    .#{$p}-header__titulo { font-size: 17px; }
+    .#{$p}-header__subtitulo { font-size: 16px; padding: 2px 5px; }
+
+    .#{$p}-header__badge {
+      width: 40px;
+      height: 40px;
+      img { width: 27px; }
+    }
   }
+
+  .ni-schedule__sala { font-size: 11px; padding: 0.15rem 0.4rem; }
 }
